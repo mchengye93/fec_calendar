@@ -3,9 +3,6 @@ const airBnb = {
   _id: 'MongoDB Object ID',
   listingId: 'ID of Airbnb',
 
-  averageRating: 'Float out of 5 Stars',
-  numberOfRatings: 'Number',
-
   bookings: '[] dates array from start date/duration, blackout dates, etc.',
   minNights: 'Number',
   maxNights: 'Number',

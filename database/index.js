@@ -6,7 +6,6 @@ mongoose.connect('mongodb://localhost:27017/airbnb-calendar', { useNewUrlParser:
 const { Schema } = mongoose;
 
 const listingSchema = new Schema({
-  _id: Number,
   listingId: { type: Number, required: true },
   // new Date("<YYYY-mm-dd>")
   bookings: [Date],
@@ -19,16 +18,6 @@ const listingSchema = new Schema({
 const Listing = mongoose.model('Listing', listingSchema);
 
 
-// const listing = new Listing({
-//   _id: 0,
-//   listingId: 0,
-//   bookings: ['2019-05-01', '2019-04-02', '2019-03-03'],
-//   minNights: 1,
-//   maxNights: 3,
-//   finalDay: '2019-06-10',
-
-// });
-// listing.save().then(() => console.log('Listing created!'));
 const getBookings = (listingIdObj, res) => {
   // Listing.find().
   console.log('db listIdobj', listingIdObj);
@@ -42,7 +31,20 @@ const getBookings = (listingIdObj, res) => {
   });
 };
 
+const addListings = (listings) => {
+  console.log('from db addListings ', listings);
+  console.log(listings.length);
+
+  for (let i = 0; i < listings.length; i += 1) {
+    const listing = new Listing(listings[i]);
+    listing.save().then((result) => {
+      console.log('saved ', result);
+    });
+  }
+};
+
 
 module.exports = {
   getBookings,
+  addListings,
 };

@@ -20,12 +20,12 @@ const Listing = mongoose.model('Listing', listingSchema);
 
 const getBookings = (listingIdObj, res) => {
   // Listing.find().
-  console.log('db listIdobj', listingIdObj);
+  // console.log('db listIdobj', listingIdObj);
   Listing.find(listingIdObj, (err, results) => {
     if (err) {
       res.end(err);
     } else {
-      console.log('inside dbs getBookings result:', JSON.stringify(results));
+      // console.log('inside dbs getBookings result:', JSON.stringify(results));
       res.end(JSON.stringify(results));
     }
   });
@@ -38,7 +38,7 @@ const addListings = (listings) => {
   for (let i = 0; i < listings.length; i += 1) {
     const listing = new Listing(listings[i]);
     listing.save().then((result) => {
-      console.log('saved ', result);
+      // console.log('saved ', result);
     });
   }
 };

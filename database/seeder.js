@@ -24,7 +24,7 @@ const listingGenerator = () => {
 
 
       day.setDate(day.getDate() + 7);
-      console.log('day', day);
+      // console.log('day', day);
       for (let y = 0; y < 3; y += 1) {
         const randomWeekDate = faker.date.between(randomDate, day);
         // console.log(randomWeekDate);
@@ -34,7 +34,7 @@ const listingGenerator = () => {
           randomDateArr.push(date);
         }
       }
-      console.log(randomDateArr);
+      // console.log(randomDateArr);
     }
     listing.bookings = randomDateArr.sort();
     listing.minNights = 1 + Math.floor(5 * Math.random());
@@ -46,5 +46,5 @@ const listingGenerator = () => {
   return listings;
 };
 
-console.log(listingGenerator());
+// console.log(listingGenerator());
 db.addListings(listingGenerator());

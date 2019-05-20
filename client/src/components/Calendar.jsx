@@ -41,7 +41,10 @@ class Calendar extends React.Component {
 
 
   month() {
-    return this.state.dateObject.format('MMMM YYYY');
+    return (
+
+      this.state.dateObject.format('MMMM YYYY')
+    );
   }
 
   nextMonth() {
@@ -52,34 +55,200 @@ class Calendar extends React.Component {
     // console.log('this.state.listing', this.state.listing);
 
     // console.log(this.props.listing);
-    return (
-      <div>
-        <div><strong>Availability</strong></div>
-        <div>
-          <span>5 nights mimimum stay · Updated today</span>
-          <span><button>Clear Dates</button></span>
-        </div>
-        <button onClick={this.backwardMonth}> Back </button>
-        <button onClick={this.forwardMonth}> Forward </button>
-        <div className="current-month-calendar">
-          <div className="calendar-navi">
-            {this.month()}
-          </div>
-          <table className="calendar-day">
-            <WeekDays />
-            <DaysInMonth month={this.state.dateObject} listing={this.props.listing} />
-          </table>
-        </div>
-        <div className="current-month-calendar">
-          <div className="calendar-navi">
-            {this.nextMonth()}
-          </div>
-          <table className="next-calendar-day">
-            <WeekDays />
-            <DaysInMonth month={this.state.nextMonth} listing={this.props.listing} />
-          </table>
-        </div>
+    const style1 = {
+      display: 'inline-block',
+      width: '100%',
+      verticalAlign: 'bottom',
 
+    };
+    const style2 = {
+      marginBottom: '0px',
+    };
+
+    const style3 = {
+      marginBottom: '16px',
+    };
+    const style4 = {
+      margin: '0px !important',
+      wordWrap: 'break-word !important',
+      fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important',
+      fontSize: '16px !important',
+      fontWeight: '800 !important',
+      lineHeight: '1.375em !important',
+      color: '#484848 !important',
+    };
+
+    const style5 = {
+      display: 'block !important',
+      left: '0px !important',
+      marginLeft: '-22px !important',
+    };
+
+    const styleBot = {
+      marginTop: '24px',
+      marginBottom: '24px',
+    };
+
+    const styleCalendar = {
+      width: '633px',
+    };
+
+    const messageSpan = {
+      margin: '0px',
+      wordWrap: 'break-word',
+      fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+      fontSize: '16px',
+      fontWeight: '400',
+      lineHeight: '1.375em',
+      color: '#484848',
+
+    };
+
+    const calendars = {
+      transform: 'translateX(0px)',
+      width: '1228px',
+    };
+
+    const leftBot = {
+      cursor: 'pointer',
+      userSelect: 'none',
+      backgroundColor: 'rgb(255, 255, 255)',
+      color: 'rgb(117, 117, 117)',
+      position: 'absolute',
+      top: '18px',
+      lineHeight: '0.78',
+      left: '22px',
+      margin: '0px',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'rgb(228, 231, 231)',
+      borderImage: 'initial',
+      borderRadius: '3px',
+      padding: '6px 9px',
+    };
+
+    const rightBotDiv = {
+      cursor: 'pointer',
+      userSelect: 'none',
+      backgroundColor: 'rgb(255, 255, 255)',
+      color: 'rgb(117, 117, 117)',
+      position: 'absolute',
+      top: '18px',
+      lineHeight: '0.78',
+      left: '22px',
+      margin: '0px',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'rgb(228, 231, 231)',
+      borderImage: 'initial',
+      borderRadius: '3px ',
+      padding: '6px 9px',
+      display: 'block',
+
+    };
+
+    const botSvg = {
+      height: '19px',
+      width: '19px',
+      fill: 'rgb(130, 136, 138)',
+      display: 'block',
+    };
+    const rightBotStyle = {
+      cursor: 'pointer',
+      userSelect: 'none',
+      backgroundColor: 'rgb(255, 255, 255)',
+      color: 'rgb(117, 117, 117)',
+      position: 'absolute',
+      top: '18px',
+      lineHeight: '0.78',
+      right: '22px',
+      margin: '0px',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'rgb(228, 231, 231)',
+      borderImage: 'initial',
+      borderRadius: '3px',
+      padding: '6px 9px',
+    };
+
+    const leftBotStyle = {
+      cursor: 'pointer',
+      userSelect: 'none',
+      backgroundColor: 'rgb(255, 255, 255)',
+      color: 'rgb(117, 117, 117)',
+      position: 'absolute',
+      top: '18px',
+      lineHeight: '0.78',
+      left: '22px',
+      margin: '0px',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'rgb(228, 231, 231)',
+      borderImage: 'initial',
+      borderRadius: '3px',
+      padding: '6px 9px',
+    };
+
+    const monthStyle = {
+      color: 'rgb(72, 72, 72)',
+      fontSize: '18px',
+      textSlign: 'center',
+      paddingTop: '22px',
+      paddingBottom: '37px',
+      captionSide: 'initial',
+      fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
+    };
+    return (
+      <div style={style1}>
+        <div style={style2}>
+          <section>
+            <div style={style3}>
+              <h2>
+                <div>Availability</div>
+              </h2>
+            </div>
+            <div style={styleCalendar}>
+              <div>
+                <span style={messageSpan} />
+              </div>
+              <div id="calendarContainer">
+                <div id="buttons">
+                  <div style={leftBotStyle} role="button" tabIndex="0" className="_18s8f6ik" aria-label="Move backward to switch to the previous month.">
+                    <svg style={botSvg} className="_1ri93fe" focusable="false" viewBox="0 0 1000 1000"><path d="M336.2 274.5l-210.1 210h805.4c13 0 23 10 23 23s-10 23-23 23H126.1l210.1 210.1c11 11 11 21 0 32-5 5-10 7-16 7s-11-2-16-7l-249.1-249c-11-11-11-21 0-32l249.1-249.1c21-21.1 53 10.9 32 32z" /></svg>
+
+                  </div>
+                  <div style={rightBotStyle} role="button" tabIndex="0" className="_1h5uiygl" aria-label="Move forward to switch to the next month.">
+                    <svg style={botSvg} className="_1ri93fe" focusable="false" viewBox="0 0 1000 1000"><path d="M694.4 242.4l249.1 249.1c11 11 11 21 0 32L694.4 772.7c-5 5-10 7-16 7s-11-2-16-7c-11-11-11-21 0-32l210.1-210.1H67.1c-13 0-23-10-23-23s10-23 23-23h805.4L662.4 274.5c-21-21.1 11-53.1 32-32.1z" /></svg>
+
+                  </div>
+                </div>
+                <div id="calendars" style={calendars}>
+                  <div id="calendar1">
+                    <div style={monthStyle} className="current-month-calendar">
+                      <strong>{this.month()}</strong>
+                    </div>
+                    <table className="calendar-day">
+                      <WeekDays />
+                      <DaysInMonth month={this.state.dateObject} listing={this.props.listing} />
+                    </table>
+                  </div>
+                  <div id="calendar2">
+                    <div style={monthStyle} className="calendar-navi">
+                      <strong>{this.nextMonth()}</strong>
+                    </div>
+                    <table className="next-calendar-day">
+                      <WeekDays />
+                      <DaysInMonth month={this.state.nextMonth} listing={this.props.listing} />
+                    </table>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div style={styleBot}>{' '}</div>
+          </section>
+        </div>
       </div>
     );
   }

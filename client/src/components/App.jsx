@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Calendar from './Calendar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends React.Component {
       .then((results) => {
         // console.log(results);
         this.setState({ listing: results.data[0] });
-        console.log(this.state.listing);
+        // console.log(this.state.listing);
       })
       .catch((error) => {
         console.log(error);
@@ -33,8 +34,9 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.listing);
     return (
-      <div>TEST</div>
+      <Calendar listing={this.state.listing} />
     );
   }
 }

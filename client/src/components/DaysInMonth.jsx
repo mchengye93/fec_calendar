@@ -14,7 +14,10 @@ class DaysInMonth extends React.Component {
     this.daysInMonth = this.daysInMonth.bind(this);
     this.blanksDays = this.blanksDays.bind(this);
     this.totalSlots = this.totalSlots.bind(this);
+
+    this.bookedDay = this.bookedDay.bind(this);
   }
+
 
   firstDayOfMonth() {
     const { dateObject } = this.state;
@@ -23,17 +26,45 @@ class DaysInMonth extends React.Component {
     return firstDay;
   }
 
+  bookedDay(date) {
+    // convert the day to moment;
+    // console.log(date);
+
+    const booked = this.props.listing.bookings;
+    if (booked !== undefined) {
+      // console.log(booked);
+      for (let i = 0; i < booked.length; i += 1) {
+        const trimDate = booked[i].split('T')[0];
+
+        // console.log('any day ===', trimDate === date);
+        if (trimDate === date) {
+          return true;
+        }
+      }
+    }
+    return false;
+    // console.log('booked contains', booked.includes(day));
+  }
+
 
   daysInMonth() {
     const { dateObject } = this.state;
     const totalDaysInMonth = moment(dateObject).daysInMonth();
+    const { bookings } = this.props.listing;
 
+    console.log('bookings', bookings);
+    const month = moment(dateObject).format('MM');
+    const year = moment(dateObject).format('YYYY');
 
+    // console.log('month', month);
+    // console.log('year', year);
     const daysInMonth = [];
     for (let d = 1; d <= totalDaysInMonth; d += 1) {
-      // const currentDay = d == this.currentDay() ? 'today' : '';
+      const day = d > 9 ? d : `0${d}`;
+      const date = `${year}-${month}-${day}`;
+      const booked = this.bookedDay(date) ? 'booked' : '';
       daysInMonth.push(
-        <td key={d} className="calendar-day ">{d}</td>,
+        <td key={d} className={`calendar-day ${booked}`}>{d}</td>,
       );
     }
 

@@ -9,10 +9,12 @@ class Calendar extends React.Component {
     super(props);
 
     this.state = {
-      listing: this.props.listing,
+      // eslint-disable-next-line react/destructuring-assignment
+      listing: {},
       dateObject: moment(),
       nextMonth: moment().add(1, 'months'),
     };
+
 
     this.backwardMonth = this.backwardMonth.bind(this);
     this.forwardMonth = this.forwardMonth.bind(this);
@@ -47,7 +49,9 @@ class Calendar extends React.Component {
   }
 
   render() {
-    console.log(this.state.listing);
+    // console.log('this.state.listing', this.state.listing);
+
+    // console.log(this.props.listing);
     return (
       <div>
         <div><strong>Availability</strong></div>
@@ -63,7 +67,7 @@ class Calendar extends React.Component {
           </div>
           <table className="calendar-day">
             <WeekDays />
-            <DaysInMonth month={this.state.dateObject} />
+            <DaysInMonth month={this.state.dateObject} listing={this.props.listing} />
           </table>
         </div>
         <div className="current-month-calendar">
@@ -72,7 +76,7 @@ class Calendar extends React.Component {
           </div>
           <table className="next-calendar-day">
             <WeekDays />
-            <DaysInMonth month={this.state.nextMonth} />
+            <DaysInMonth month={this.state.nextMonth} listing={this.props.listing} />
           </table>
         </div>
 

@@ -12,7 +12,9 @@ const WeekDays = () => {
   ));
   return (
     <thead>
-      { weekdaysshortname }
+      <tr>
+        { weekdaysshortname }
+      </tr>
     </thead>
   );
 };

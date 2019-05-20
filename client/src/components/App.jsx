@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      listing: [],
+      listing: {},
     };
     this.getBookings = this.getBookings.bind(this);
   }
@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.listing);
+    // console.log(this.state.listing);
     return (
       <Calendar listing={this.state.listing} />
     );

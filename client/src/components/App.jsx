@@ -1,6 +1,9 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import Calendar from './Calendar.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -27,7 +30,6 @@ class App extends React.Component {
       .then((results) => {
         // console.log(results);
 
-
         // take results and add blackout dates according to minimum stay
         this.blackOutDates(results.data[0]);
         // this.setState({ listing: results.data[0] });
@@ -37,10 +39,42 @@ class App extends React.Component {
       });
   }
 
-  blackOutDates(listing) {
-    const airBbnb = listing;
-    console.log(listing);
-    // const minStay = listing.mi
+  blackOutDates(list) {
+    const airBbnb = list;
+    const { minNights } = list;
+    // console.log(list);
+    // console.log(minNights);
+
+    const newBookings = list.bookings.slice();
+
+    // check between each book date and if it is less than
+    // min nights mark it as booked
+    for (let i = 0; i < list.bookings.length - 1; i += 1) {
+      const { bookings } = list;
+      // console.log({ bookings });
+      const current = moment(bookings[i]);
+      const next = moment(bookings[i + 1]);
+
+      // console.log('current:', current, ' next:', next);
+
+      // console.log('diff dates =', next.diff(current, 'days'));
+
+      const diffDays = next.diff(current, 'days');
+
+      if (diffDays <= minNights) {
+        // console.log('less than min nights!');
+        for (let x = 1; x < diffDays; x += 1) {
+          const blackOutDay = new Date(current);
+          blackOutDay.setDate(blackOutDay.getDate() + x + 1);
+          // console.log(blackOutDay);
+          newBookings.push(`${moment(blackOutDay).format('YYYY-MM-DD')}T`);
+        }
+      }
+    }
+    list.bookings = newBookings.sort();
+    // console.log(list.bookings);
+    // console.log(list);
+    this.setState({ listing: list });
   }
 
   render() {

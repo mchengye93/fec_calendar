@@ -145,42 +145,17 @@ class DaysInMonth extends React.Component {
       const day = d > 9 ? d : `0${d}`;
       const date = `${year}-${month}-${day}`;
       const booked = this.bookedDay(date) ? 'booked' : '';
-      const beforeCurrent = new Date(date) < new Date();
+
+      const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() - 1);
+      const beforeCurrent = new Date(date) < currentDate;
 
       if (this.bookedDay(date) || beforeCurrent) {
         daysInMonth.push(<Day d={d} booked="true" />);
       } else {
         daysInMonth.push(<Day d={d} booked="false" />);
       }
-
-      // console.log('less than current day? ', new Date(date), new Date(), beforeCurrent);
-      // console.log(beforeCurrent);
-      //   if (this.bookedDay(date) || beforeCurrent) {
-      //     daysInMonth.push(
-      //       <td style={bookedTd} key={d} className={`calendar-day ${booked}`}>
-      //         <div style={div1}>
-      //           <div style={div2}>
-      //             <div style={bookedDiv}>{d}</div>
-      //           </div>
-      //         </div>
-      //       </td>,
-      //     );
-      //   } else {
-      //     const tdStyling = this.state.checkIn ? clickedTd : availableTd;
-      //     const divStyling = this.state.checkIn ? clickedDiv : availableDiv;
-
-    //     daysInMonth.push(
-    //       <td onClick={this.changeStyle} style={tdStyling} key={d} className={`calendar-day ${booked}`}>
-    //         <div style={div1}>
-    //           <div style={div2}>
-    //             <div style={divStyling}>{d}</div>
-    //           </div>
-    //         </div>
-    //       </td>,
-    //     );
-    //   }
     }
-
     return daysInMonth;
   }
 

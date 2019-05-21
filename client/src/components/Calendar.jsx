@@ -67,9 +67,6 @@ class Calendar extends React.Component {
   }
 
   render() {
-    // console.log('this.state.listing', this.state.listing);
-
-    // console.log(this.props.listing);
     const style1 = {
       width: '100%',
       verticalAlign: 'bottom',
@@ -145,9 +142,7 @@ class Calendar extends React.Component {
                       <DaysInMonth month={this.state.nextMonth} listing={this.props.listing} />
                     </table>
                   </div>
-
                 </div>
-
               </div>
             </div>
             <div style={styleBot}>{' '}</div>

@@ -4,6 +4,7 @@ import moment from 'moment';
 import WeekDays from './WeekDays.jsx';
 import DaysInMonth from './DaysInMonth.jsx';
 import Button from './Button.jsx';
+import Message from './Message.jsx';
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -14,6 +15,9 @@ class Calendar extends React.Component {
       listing: {},
       dateObject: moment(),
       nextMonth: moment().add(1, 'months'),
+      clicked: true,
+      checkIn: null,
+      checkOut: null,
     };
 
 
@@ -22,6 +26,7 @@ class Calendar extends React.Component {
 
     this.month = this.month.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
+    this.clearDate = this.clearDate.bind(this);
   }
 
   componentDidMount() {
@@ -52,10 +57,16 @@ class Calendar extends React.Component {
     return this.state.nextMonth.format('MMMM YYYY');
   }
 
-  render() {
-    // console.log('this.state.listing', this.state.listing);
+  clearDate() {
+    console.log('clearDate from calendar!');
+    this.setState({
+      checkIn: null,
+      checkOut: null,
+      clicked: false,
+    });
+  }
 
-    // console.log(this.props.listing);
+  render() {
     const style1 = {
       width: '100%',
       verticalAlign: 'bottom',
@@ -78,16 +89,6 @@ class Calendar extends React.Component {
       width: '800px',
     };
 
-    const messageSpan = {
-      margin: '0px',
-      wordWrap: 'break-word',
-      fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
-      fontSize: '16px',
-      fontWeight: '400',
-      lineHeight: '1.375em',
-      color: '#484848',
-
-    };
 
     const calendars = {
       transform: 'translateX(0px)',
@@ -117,10 +118,9 @@ class Calendar extends React.Component {
                 <div>Availability</div>
               </h2>
             </div>
+            <Message clicked={this.state.clicked} minNights={this.props.listing.minNights} clearDate={this.clearDate} />
             <div style={styleCalendar}>
-              <div>
-                <span style={messageSpan} />
-              </div>
+
               <div id="calendarContainer">
                 <Button backwardMonth={this.backwardMonth} forwardMonth={this.forwardMonth} />
                 <div id="calendars">
@@ -142,9 +142,7 @@ class Calendar extends React.Component {
                       <DaysInMonth month={this.state.nextMonth} listing={this.props.listing} />
                     </table>
                   </div>
-
                 </div>
-
               </div>
             </div>
             <div style={styleBot}>{' '}</div>

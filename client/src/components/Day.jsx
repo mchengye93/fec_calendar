@@ -91,9 +91,9 @@ class Day extends React.Component {
   }
 
   render() {
-    console.log(this.props.booked);
+    // console.log(this.props.booked);
     if (this.props.booked === 'true') {
-      console.log('inside true!');
+      // console.log('inside true!');
       return (
         <td style={bookedTd} key={this.props.d} className="calendar-day booked">
           <div style={div1}>

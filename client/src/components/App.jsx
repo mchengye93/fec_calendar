@@ -55,10 +55,7 @@ class App extends React.Component {
     };
     return (
 
-      // <div style={inline}>
-      //   <div style={width}> Div1</div>
-      //   <div style={width}>Div2</div>
-      // </div>
+
       <div style={calendarDiv}>
         <Calendar listing={this.state.listing} />
       </div>

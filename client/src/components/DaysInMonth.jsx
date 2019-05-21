@@ -36,7 +36,7 @@ const bookedDiv = {
 };
 
 
-const clickedTd = {
+const clickedDiv = {
   width: '40px',
   height: '39px',
   background: 'rgb(0, 132, 137)',
@@ -47,7 +47,7 @@ const clickedTd = {
 
 };
 
-const clickedDiv = {
+const clickedTd = {
   fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
   fontWeight: '700',
   height: '12px',
@@ -91,6 +91,8 @@ class DaysInMonth extends React.Component {
     this.totalSlots = this.totalSlots.bind(this);
 
     this.bookedDay = this.bookedDay.bind(this);
+
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
 
@@ -119,6 +121,10 @@ class DaysInMonth extends React.Component {
     }
     return false;
     // console.log('booked contains', booked.includes(day));
+  }
+
+  changeStyle(e) {
+
   }
 
 
@@ -153,7 +159,7 @@ class DaysInMonth extends React.Component {
         );
       } else {
         daysInMonth.push(
-          <td style={availableTd} key={d} className={`calendar-day ${booked}`}>
+          <td onClick={this.changeStyle} style={availableTd} key={d} className={`calendar-day ${booked}`}>
             <div style={div1}>
               <div style={div2}>
                 <div style={availableDiv}>{d}</div>

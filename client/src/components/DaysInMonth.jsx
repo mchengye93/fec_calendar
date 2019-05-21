@@ -36,7 +36,7 @@ const bookedDiv = {
 };
 
 
-const clickedTd = {
+const clickedDiv = {
   width: '40px',
   height: '39px',
   background: 'rgb(0, 132, 137)',
@@ -47,7 +47,7 @@ const clickedTd = {
 
 };
 
-const clickedDiv = {
+const clickedTd = {
   fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
   fontWeight: '700',
   height: '12px',
@@ -80,6 +80,7 @@ class DaysInMonth extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       dateObject: this.props.month,
     };
 
@@ -90,6 +91,8 @@ class DaysInMonth extends React.Component {
     this.totalSlots = this.totalSlots.bind(this);
 
     this.bookedDay = this.bookedDay.bind(this);
+
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
 
@@ -120,6 +123,10 @@ class DaysInMonth extends React.Component {
     // console.log('booked contains', booked.includes(day));
   }
 
+  changeStyle(e) {
+
+  }
+
 
   daysInMonth() {
     const { dateObject } = this.state;
@@ -137,8 +144,10 @@ class DaysInMonth extends React.Component {
       const day = d > 9 ? d : `0${d}`;
       const date = `${year}-${month}-${day}`;
       const booked = this.bookedDay(date) ? 'booked' : '';
-
-      if (this.bookedDay(date)) {
+      const beforeCurrent = new Date(date) < new Date();
+      console.log('less than current day? ', new Date(date), new Date(), beforeCurrent);
+      // console.log(beforeCurrent);
+      if (this.bookedDay(date) || beforeCurrent) {
         daysInMonth.push(
           <td style={bookedTd} key={d} className={`calendar-day ${booked}`}>
             <div style={div1}>
@@ -150,7 +159,7 @@ class DaysInMonth extends React.Component {
         );
       } else {
         daysInMonth.push(
-          <td style={availableTd} key={d} className={`calendar-day ${booked}`}>
+          <td onClick={this.changeStyle} style={availableTd} key={d} className={`calendar-day ${booked}`}>
             <div style={div1}>
               <div style={div2}>
                 <div style={availableDiv}>{d}</div>

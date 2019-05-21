@@ -47,7 +47,18 @@ class App extends React.Component {
       verticalAlign: 'bottom',
       width: '648px',
     };
+
+    const inline = { display: 'inline-block' };
+    const width = {
+      display: 'inline-block',
+      width: '100px',
+    };
     return (
+
+      // <div style={inline}>
+      //   <div style={width}> Div1</div>
+      //   <div style={width}>Div2</div>
+      // </div>
       <div style={calendarDiv}>
         <Calendar listing={this.state.listing} />
       </div>

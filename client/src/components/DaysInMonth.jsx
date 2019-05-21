@@ -80,6 +80,7 @@ class DaysInMonth extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       dateObject: this.props.month,
     };
 
@@ -137,8 +138,10 @@ class DaysInMonth extends React.Component {
       const day = d > 9 ? d : `0${d}`;
       const date = `${year}-${month}-${day}`;
       const booked = this.bookedDay(date) ? 'booked' : '';
-
-      if (this.bookedDay(date)) {
+      const beforeCurrent = new Date(date) < new Date();
+      console.log('less than current day? ', new Date(date), new Date(), beforeCurrent);
+      // console.log(beforeCurrent);
+      if (this.bookedDay(date) || beforeCurrent) {
         daysInMonth.push(
           <td style={bookedTd} key={d} className={`calendar-day ${booked}`}>
             <div style={div1}>

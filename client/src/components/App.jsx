@@ -28,11 +28,8 @@ class App extends React.Component {
       },
     })
       .then((results) => {
-        // console.log(results);
-
         // take results and add blackout dates according to minimum stay
         this.blackOutDates(results.data[0]);
-        // this.setState({ listing: results.data[0] });
       })
       .catch((error) => {
         console.log(error);
@@ -40,10 +37,7 @@ class App extends React.Component {
   }
 
   blackOutDates(list) {
-    const airBbnb = list;
     const { minNights } = list;
-    // console.log(list);
-    // console.log(minNights);
 
     const newBookings = list.bookings.slice();
 
@@ -51,13 +45,9 @@ class App extends React.Component {
     // min nights mark it as booked
     for (let i = 0; i < list.bookings.length - 1; i += 1) {
       const { bookings } = list;
-      // console.log({ bookings });
+
       const current = moment(bookings[i]);
       const next = moment(bookings[i + 1]);
-
-      // console.log('current:', current, ' next:', next);
-
-      // console.log('diff dates =', next.diff(current, 'days'));
 
       const diffDays = next.diff(current, 'days');
 
@@ -72,8 +62,7 @@ class App extends React.Component {
       }
     }
     list.bookings = newBookings.sort();
-    // console.log(list.bookings);
-    // console.log(list);
+
     this.setState({ listing: list });
   }
 
@@ -92,11 +81,6 @@ class App extends React.Component {
       width: '648px',
     };
 
-    const inline = { display: 'inline-block' };
-    const width = {
-      display: 'inline-block',
-      width: '100px',
-    };
     return (
 
 

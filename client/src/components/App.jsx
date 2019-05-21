@@ -10,6 +10,7 @@ class App extends React.Component {
       listing: {},
     };
     this.getBookings = this.getBookings.bind(this);
+    this.blackOutDates = this.blackOutDates.bind(this);
   }
 
   componentDidMount() {
@@ -25,12 +26,21 @@ class App extends React.Component {
     })
       .then((results) => {
         // console.log(results);
-        this.setState({ listing: results.data[0] });
-        // console.log(this.state.listing);
+
+
+        // take results and add blackout dates according to minimum stay
+        this.blackOutDates(results.data[0]);
+        // this.setState({ listing: results.data[0] });
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  blackOutDates(listing) {
+    const airBbnb = listing;
+    console.log(listing);
+    // const minStay = listing.mi
   }
 
   render() {

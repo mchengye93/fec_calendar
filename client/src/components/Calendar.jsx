@@ -56,7 +56,6 @@ class Calendar extends React.Component {
 
     // console.log(this.props.listing);
     const style1 = {
-      display: 'inline-block',
       width: '100%',
       verticalAlign: 'bottom',
 
@@ -68,21 +67,6 @@ class Calendar extends React.Component {
     const style3 = {
       marginBottom: '16px',
     };
-    const style4 = {
-      margin: '0px !important',
-      wordWrap: 'break-word !important',
-      fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important',
-      fontSize: '16px !important',
-      fontWeight: '800 !important',
-      lineHeight: '1.375em !important',
-      color: '#484848 !important',
-    };
-
-    const style5 = {
-      display: 'block !important',
-      left: '0px !important',
-      marginLeft: '-22px !important',
-    };
 
     const styleBot = {
       marginTop: '24px',
@@ -90,7 +74,7 @@ class Calendar extends React.Component {
     };
 
     const styleCalendar = {
-      width: '633px',
+      width: '800px',
     };
 
     const messageSpan = {
@@ -106,12 +90,14 @@ class Calendar extends React.Component {
 
     const calendars = {
       transform: 'translateX(0px)',
-      width: '1228px',
+      width: '307px',
+      display: 'inline-block',
+      padding: '0px 13px',
+
     };
 
     const leftBot = {
       cursor: 'pointer',
-      userSelect: 'none',
       backgroundColor: 'rgb(255, 255, 255)',
       color: 'rgb(117, 117, 117)',
       position: 'absolute',
@@ -143,7 +129,7 @@ class Calendar extends React.Component {
       borderImage: 'initial',
       borderRadius: '3px ',
       padding: '6px 9px',
-      display: 'block',
+      // display: 'block',
 
     };
 
@@ -151,7 +137,7 @@ class Calendar extends React.Component {
       height: '19px',
       width: '19px',
       fill: 'rgb(130, 136, 138)',
-      display: 'block',
+      // display: 'block',
     };
     const rightBotStyle = {
       cursor: 'pointer',
@@ -169,6 +155,8 @@ class Calendar extends React.Component {
       borderImage: 'initial',
       borderRadius: '3px',
       padding: '6px 9px',
+      width: '19px',
+
     };
 
     const leftBotStyle = {
@@ -187,6 +175,8 @@ class Calendar extends React.Component {
       borderImage: 'initial',
       borderRadius: '3px',
       padding: '6px 9px',
+      width: '19px',
+
     };
 
     const monthStyle = {
@@ -197,6 +187,11 @@ class Calendar extends React.Component {
       paddingBottom: '37px',
       captionSide: 'initial',
       fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
+      textAlign: 'center',
+    };
+    const relative = {
+      width: '678px',
+      position: 'relative',
     };
     return (
       <div style={style1}>
@@ -212,7 +207,7 @@ class Calendar extends React.Component {
                 <span style={messageSpan} />
               </div>
               <div id="calendarContainer">
-                <div id="buttons">
+                <div id="buttons" style={relative}>
                   <div style={leftBotStyle} role="button" tabIndex="0" className="_18s8f6ik" aria-label="Move backward to switch to the previous month.">
                     <svg style={botSvg} className="_1ri93fe" focusable="false" viewBox="0 0 1000 1000"><path d="M336.2 274.5l-210.1 210h805.4c13 0 23 10 23 23s-10 23-23 23H126.1l210.1 210.1c11 11 11 21 0 32-5 5-10 7-16 7s-11-2-16-7l-249.1-249c-11-11-11-21 0-32l249.1-249.1c21-21.1 53 10.9 32 32z" /></svg>
 
@@ -222,8 +217,8 @@ class Calendar extends React.Component {
 
                   </div>
                 </div>
-                <div id="calendars" style={calendars}>
-                  <div id="calendar1">
+                <div id="calendars">
+                  <div id="calendar1" style={calendars}>
                     <div style={monthStyle} className="current-month-calendar">
                       <strong>{this.month()}</strong>
                     </div>
@@ -232,7 +227,7 @@ class Calendar extends React.Component {
                       <DaysInMonth month={this.state.dateObject} listing={this.props.listing} />
                     </table>
                   </div>
-                  <div id="calendar2">
+                  <div id="calendar2" style={calendars}>
                     <div style={monthStyle} className="calendar-navi">
                       <strong>{this.nextMonth()}</strong>
                     </div>

@@ -64,7 +64,6 @@ class Calendar extends React.Component {
   }
 
   clearDate() {
-    console.log('clearDate from calendar!');
     this.setState({
       checkIn: null,
       checkOut: null,
@@ -74,27 +73,22 @@ class Calendar extends React.Component {
   }
 
   lookForLastDay(date) {
-    console.log(this.props.listing);
     const { bookings } = this.props.listing;
     for (let i = 0; i < bookings.length; i += 1) {
       const bookingDate = bookings[i];
       if (bookingDate > date) {
-        console.log('this date is next booking date', bookingDate);
         return (bookingDate);
       }
     }
   }
 
   setCheckIn(date) {
-    console.log('inside calendar setcheckin', date);
     if (this.state.checkIn !== null && this.state.checkOut !== null) {
       // reset new checkIn date last day is less than checkout then reset checkout
       // set new checkin
       const newLastDay = this.lookForLastDay(date);
 
       if (newLastDay < this.state.checkOut) {
-        console.log('new check in last day less than current checkout!');
-
         // reset checkin date
         this.setState({
           checkIn: date,
@@ -112,10 +106,8 @@ class Calendar extends React.Component {
           lastDay: lastCheckOutDay,
           renderAll: false,
         });
-        console.log(this.state);
       }
     } else if (this.state.checkIn === null) {
-      console.log('check in is null new date', date);
       const lastCheckOutDay = this.lookForLastDay(date);
       this.setState({
         checkIn: date,
@@ -123,20 +115,19 @@ class Calendar extends React.Component {
         renderAll: false,
       });
     } else if (this.state.checkIn !== null) {
-      console.log('current checkin date', this.state.checkIn);
       this.setCheckOut(date);
     }
   }
 
   setCheckOut(date) {
-    console.log('inside calendar setcheckOUT', date);
+    // console.log('inside calendar setcheckOUT', date);
 
     this.setState({
       checkOut: date,
       lastDay: null,
       renderAll: true,
     });
-    console.log('current checkout date', date);
+    // console.log('current checkout date', date);
   }
 
   render() {

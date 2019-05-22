@@ -100,6 +100,7 @@ class Calendar extends React.Component {
           checkIn: date,
           checkOut: null,
           lastDay: newLastDay,
+          renderAll: false,
         });
       } else if (date < this.state.checkOut) {
         this.setState({ checkIn: date });
@@ -109,6 +110,7 @@ class Calendar extends React.Component {
           checkIn: date,
           checkOut: null,
           lastDay: lastCheckOutDay,
+          renderAll: false,
         });
         console.log(this.state);
       }

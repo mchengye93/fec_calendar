@@ -82,12 +82,16 @@ class Day extends React.Component {
     super(props);
     this.state = {
       checkIn: false,
+      checkDate: null,
     };
     this.changeStyle = this.changeStyle.bind(this);
   }
 
   changeStyle(e) {
     this.setState({ checkIn: !this.state.checkIn });
+    // get value of current day
+    console.log(this.props.checkDate);
+    this.props.setCheckIn(this.props.checkDate);
   }
 
   render() {

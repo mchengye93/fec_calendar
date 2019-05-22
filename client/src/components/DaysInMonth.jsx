@@ -82,6 +82,7 @@ class DaysInMonth extends React.Component {
     super(props);
     this.state = {
       dateObject: this.props.month,
+
     };
 
     this.daysInMonth = this.daysInMonth.bind(this);
@@ -150,10 +151,20 @@ class DaysInMonth extends React.Component {
       currentDate.setDate(currentDate.getDate() - 1);
       const beforeCurrent = new Date(date) < currentDate;
 
-      if (this.bookedDay(date) || beforeCurrent) {
+      const beforeCheckIn = new Date(date) < new Date(this.props.checkInDate);
+
+      const afterLastDay = false;
+      if (this.props.lastDay !== null) {
+        const lastDay = new Date(date) > new Date(this.props.lastDay);
+        if (lastDay) {
+          afterLastDay = true;
+        }
+      }
+
+      if (this.bookedDay(date) || beforeCurrent || beforeCheckIn || afterLastDay) {
         daysInMonth.push(<Day d={d} booked="true" />);
       } else {
-        daysInMonth.push(<Day d={d} booked="false" />);
+        daysInMonth.push(<Day d={d} booked="false" checkDate={date} setCheckIn={this.props.setCheckIn} />);
       }
     }
     return daysInMonth;

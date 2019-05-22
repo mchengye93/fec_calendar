@@ -68,7 +68,8 @@ class Calendar extends React.Component {
     this.setState({
       checkIn: null,
       checkOut: null,
-      clicked: false,
+      clicked: true,
+      lastDay: null,
     });
   }
 
@@ -86,14 +87,46 @@ class Calendar extends React.Component {
 
   setCheckIn(date) {
     console.log('inside calendar setcheckin', date);
-    if (this.state.checkIn === null) {
+    if (this.state.checkIn !== null && this.state.checkOut !== null) {
+      // reset new checkIn date last day is less than checkout then reset checkout
+      // set new checkin
+      const newLastDay = this.lookForLastDay(date);
+
+      if (newLastDay < this.state.checkOut) {
+        console.log('new check in last day less than current checkout!');
+
+        // reset checkin date
+        this.setState({
+          checkIn: date,
+          checkOut: null,
+          lastDay: newLastDay,
+        });
+      } else if (date < this.state.checkOut) {
+        this.setState({ checkIn: date });
+      } else {
+        const lastCheckOutDay = this.lookForLastDay(date);
+        this.setState({
+          checkIn: date,
+          checkOut: null,
+          lastDay: lastCheckOutDay,
+        });
+        console.log(this.state);
+      }
+      // else if it is greater than current checkout then
+      // set new checkin date to be current selected date and make checkout null
+    } else if (this.state.checkIn === null) {
       // blackout all days after current's next booked dates
-      // look for first day bigger than current
+      // look for book date after current date
+      console.log('check in is null new date', date);
       const lastCheckOutDay = this.lookForLastDay(date);
       this.setState({
         checkIn: date,
         lastDay: lastCheckOutDay,
+        renderAll: false,
       });
+    } else if (this.state.checkIn !== null) {
+      console.log('current checkin date', this.state.checkIn);
+      this.setCheckOut(date);
     }
 
     // if checkin and checkout is not null then we can reselect checkin date
@@ -110,6 +143,15 @@ class Calendar extends React.Component {
 
   setCheckOut(date) {
     console.log('inside calendar setcheckOUT', date);
+
+    this.setState({
+      checkOut: date,
+      lastDay: null,
+      renderAll: true,
+    });
+    console.log('current checkout date', date);
+
+
     // add new checkout date
     // highlight all days between checkin and checkout
     // then render all other available days to allow reselect of checkin
@@ -191,7 +233,9 @@ class Calendar extends React.Component {
                         listing={this.props.listing}
                         setCheckIn={this.setCheckIn}
                         checkInDate={this.state.checkIn}
+                        checkOutDate={this.state.checkOut}
                         lastDay={this.state.lastDay}
+                        renderAll={this.state.renderAll}
                       />
                     </table>
                   </div>
@@ -206,7 +250,9 @@ class Calendar extends React.Component {
                         listing={this.props.listing}
                         setCheckIn={this.setCheckIn}
                         checkInDate={this.state.checkIn}
+                        checkOutDate={this.state.checkOut}
                         lastDay={this.state.lastDay}
+                        renderAll={this.state.renderAll}
                       />
                     </table>
                   </div>

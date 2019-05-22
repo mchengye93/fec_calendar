@@ -114,11 +114,7 @@ class Calendar extends React.Component {
         });
         console.log(this.state);
       }
-      // else if it is greater than current checkout then
-      // set new checkin date to be current selected date and make checkout null
     } else if (this.state.checkIn === null) {
-      // blackout all days after current's next booked dates
-      // look for book date after current date
       console.log('check in is null new date', date);
       const lastCheckOutDay = this.lookForLastDay(date);
       this.setState({
@@ -130,17 +126,6 @@ class Calendar extends React.Component {
       console.log('current checkin date', this.state.checkIn);
       this.setCheckOut(date);
     }
-
-    // if checkin and checkout is not null then we can reselect checkin date
-    // once checkin reselected repeat process
-
-    // if checkin is null
-    // check (checkin/checkout)
-    // if checkin  is not set update checkin
-    // then blackout all dates before current selected date
-    // also blackout all days after current's next booked dates
-    // else
-    // set up checkout
   }
 
   setCheckOut(date) {
@@ -152,11 +137,6 @@ class Calendar extends React.Component {
       renderAll: true,
     });
     console.log('current checkout date', date);
-
-
-    // add new checkout date
-    // highlight all days between checkin and checkout
-    // then render all other available days to allow reselect of checkin
   }
 
   render() {

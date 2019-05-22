@@ -36,11 +36,6 @@ width: 19px;
 fill: rgb(130, 136, 138);
 `;
 
-const relative = {
-  width: '678px',
-  position: 'relative',
-  zIndex: '2',
-};
 
 const Relative = styled.div`
 width: 678px;

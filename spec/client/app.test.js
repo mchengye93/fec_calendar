@@ -8,9 +8,11 @@ import Calendar from '../../client/src/components/Calendar.jsx';
 
 describe('App', () => {
   it('<App/> components should be defined', () => {
-    const wrapper = shallow(<App />);
+    const app = shallow(<App />);
+    const { listing } = app.state();
+    expect(listing).toBeDefined();
     expect(App).toBeDefined();
-    console.log(wrapper.find(Calendar));
+    console.log(app.find(Calendar));
     // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
   });
 });

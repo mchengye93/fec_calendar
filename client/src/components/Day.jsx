@@ -182,7 +182,7 @@ class Day extends React.Component {
       );
     }
 
-    
+
     if (this.props.booked === 'true') {
       // console.log('inside true!');
       return (
@@ -196,8 +196,8 @@ class Day extends React.Component {
       );
     }
 
-    const tdStyling = this.props.selected ? clickedTd : availableTd;
-    const divStyling = this.props.selected ? clickedDiv : availableDiv;
+    tdStyling = this.props.selected ? clickedTd : availableTd;
+    divStyling = this.props.selected ? clickedDiv : availableDiv;
 
     return (
       <td onClick={this.checkDate} style={tdStyling} key={this.props.d} className="calendar-day">

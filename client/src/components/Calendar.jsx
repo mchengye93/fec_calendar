@@ -15,7 +15,7 @@ class Calendar extends React.Component {
       listing: {},
       dateObject: moment(),
       nextMonth: moment().add(1, 'months'),
-      clicked: true,
+      clicked: false,
       checkIn: null,
       checkOut: null,
       lastDay: null,
@@ -67,7 +67,7 @@ class Calendar extends React.Component {
     this.setState({
       checkIn: null,
       checkOut: null,
-      clicked: true,
+      clicked: false,
       lastDay: null,
     });
   }
@@ -95,6 +95,7 @@ class Calendar extends React.Component {
           checkOut: null,
           lastDay: newLastDay,
           renderAll: false,
+          clicked: true,
         });
       } else if (date < this.state.checkOut) {
         this.setState({ checkIn: date });
@@ -105,6 +106,7 @@ class Calendar extends React.Component {
           checkOut: null,
           lastDay: lastCheckOutDay,
           renderAll: false,
+          clicked: true,
         });
       }
     } else if (this.state.checkIn === null) {
@@ -113,6 +115,7 @@ class Calendar extends React.Component {
         checkIn: date,
         lastDay: lastCheckOutDay,
         renderAll: false,
+        clicked: true,
       });
     } else if (this.state.checkIn !== null) {
       this.setCheckOut(date);

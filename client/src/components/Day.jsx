@@ -265,7 +265,7 @@ class Day extends React.Component {
               <div>
                 <MessageSpan>
                   <span>
-                    <div>
+                    <div id="minNightsSpan">
                       {this.props.minNights}
                       {' '}
 night minimum stay

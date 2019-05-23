@@ -159,6 +159,30 @@ class Day extends React.Component {
   render() {
     // console.log(this.props.minNights);
     // console.log(this.props.checkInDate);
+
+    let tdStyling = minNightsTd;
+    let divStyling = minNightsDiv;
+    console.log(this.props.highLight);
+    if (this.props.highLight) {
+      return (
+        <td
+          onClick={this.checkDate}
+          style={tdStyling}
+          key={this.props.d}
+          className="calendar-day"
+          onMouseOver={this.mouseOverCheck}
+          onMouseOut={this.mouseOutCheck}
+        >
+          <div style={div1}>
+            <div style={div2}>
+              <div style={divStyling}>{this.props.d}</div>
+            </div>
+          </div>
+        </td>
+      );
+    }
+
+    
     if (this.props.booked === 'true') {
       // console.log('inside true!');
       return (

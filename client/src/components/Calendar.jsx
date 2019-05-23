@@ -209,6 +209,7 @@ class Calendar extends React.Component {
                         checkOutDate={this.state.checkOut}
                         lastDay={this.state.lastDay}
                         renderAll={this.state.renderAll}
+                        minNights={this.props.listing.minNights}
                       />
                     </table>
                   </div>
@@ -226,6 +227,7 @@ class Calendar extends React.Component {
                         checkOutDate={this.state.checkOut}
                         lastDay={this.state.lastDay}
                         renderAll={this.state.renderAll}
+                        minNights={this.props.listing.minNights}
                       />
                     </table>
                   </div>

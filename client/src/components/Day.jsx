@@ -107,7 +107,8 @@ class Day extends React.Component {
   }
 
   render() {
-    // console.log(this.props.booked);
+    // console.log(this.props.minNights);
+    // console.log(this.props.checkInDate);
     if (this.props.booked === 'true') {
       // console.log('inside true!');
       return (
@@ -120,19 +121,6 @@ class Day extends React.Component {
         </td>
       );
     }
-
-    if (this.props.selected) {
-      // console.log(`this day is between checkin and checkout :${this.props.checkDate}`);
-    }
-
-    // if (this.state.checkIn) {
-    //   const tdStyling = clickedTd;
-    //   const divStyling = clickedDiv;
-    // } else {
-    //   const tdStyling = this.props.selected ? clickedTd : availableTd;
-    //   const divStyling = this.props.selected ? clickedDiv : availableDiv;
-    // }
-
 
     const tdStyling = this.props.selected ? clickedTd : availableTd;
     const divStyling = this.props.selected ? clickedDiv : availableDiv;

@@ -109,7 +109,6 @@ class Calendar extends React.Component {
           console.log('date less than checkot so new checkin date', date);
           this.setState({
             checkIn: date,
-
             secondCheckIn: true,
           });
         } else {
@@ -145,8 +144,9 @@ class Calendar extends React.Component {
   }
 
   setCheckOut(date) {
-    console.log(this.state.lastDay);
-    if (date > this.state.lastDay) {
+    const lastCheckOutDay = this.lookForLastDay(this.state.checkIn);
+    console.log(lastCheckOutDay);
+    if (date > lastCheckOutDay) {
       console.log('checkout date greater than last day so resetting checkin date: ', date);
       const lastCheckOutDay = this.lookForLastDay(date);
       this.setState({

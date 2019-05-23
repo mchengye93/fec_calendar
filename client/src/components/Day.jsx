@@ -6,8 +6,8 @@ const Td = styled.td`
   height: '39px',
   background: 'repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 3px, rgb(235, 235, 235) 3px, rgb(235, 235, 235) 4px)',
   color: 'rgb(0, 0, 0)',
-  border: '2px solid rgb(255, 255, 255)',
-  borde-radius: '7px ',
+  border: '1px solid rgb(255, 255, 255)',
+  borde-radius: '5px ',
   padding: '0px',
 
 `;
@@ -41,8 +41,8 @@ const bookedTd = {
   height: '39px',
   background: 'repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 3px, rgb(235, 235, 235) 3px, rgb(235, 235, 235) 4px)',
   color: 'rgb(0, 0, 0)',
-  border: '2px solid rgb(255, 255, 255)',
-  borderRadius: '7px ',
+  border: '1px solid rgb(255, 255, 255)',
+  borderRadius: '5px ',
   padding: '0px',
 };
 
@@ -56,7 +56,7 @@ const div1 = {
 const div2 = {
   paddingBottom: '13px',
   paddingTop: '13px',
-  fontSize: '14px',
+  fontSize: '13px',
 
 };
 
@@ -76,8 +76,8 @@ const clickedTd = {
   height: '39px',
   background: 'rgb(0, 132, 137)',
   color: 'rgb(0, 0, 0)',
-  border: '2px solid rgb(255, 255, 255)',
-  borderRadius: '7px',
+  border: '1px solid rgb(255, 255, 255)',
+  borderRadius: '5px',
   padding: '0px',
 
 };
@@ -97,8 +97,8 @@ const availableTd = {
   height: '39px',
   background: 'rgb(237, 246, 246)',
   color: 'rgb(0, 132, 137)',
-  border: '2px solid rgb(255, 255, 255)',
-  borderRadius: '7px',
+  border: '1px solid rgb(255, 255, 255)',
+  borderRadius: '5px',
   padding: '0px',
 };
 
@@ -117,8 +117,8 @@ const highLightTd = {
   height: '39px',
   background: 'rgb(237, 246, 246)',
   color: 'rgb(0, 132, 137)',
-  border: '2px solid rgb(255, 255, 255)',
-  borderRadius: '7px',
+  border: '1px solid rgb(255, 255, 255)',
+  borderRadius: '5px',
   padding: '0px',
   background: 'rgb(204,238,235)',
 };
@@ -138,8 +138,8 @@ const minNightsTd = {
   height: '39px',
   background: 'rgb(237, 246, 246)',
   color: 'rgb(255, 255, 255)',
-  border: '2px solid rgb(255, 255, 255)',
-  borderRadius: '7px',
+  border: '1px solid rgb(255, 255, 255)',
+  borderRadius: '5px',
   padding: '0px',
   background: 'rgb(204,238,235)',
 };
@@ -186,7 +186,7 @@ class Day extends React.Component {
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
         <td
-          id="click"
+          id="click1"
           onClick={this.checkDate}
           style={tdStyling}
           key={this.props.d}

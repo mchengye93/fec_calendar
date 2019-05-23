@@ -88,6 +88,37 @@ const availableDiv = {
   color: 'rgb(0, 132, 137)',
 };
 
+const highLightTd = {
+  width: '40px',
+  height: '39px',
+  background: 'rgb(237, 246, 246)',
+  color: 'rgb(0, 132, 137)',
+  border: '2px solid rgb(255, 255, 255)',
+  borderRadius: '7px',
+  padding: '0px',
+  background: 'rgb(204,238,235)',
+};
+
+const minNightsDiv = {
+  fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
+  fontWeight: '700',
+  height: '12px',
+  lineHeight: '12px',
+  textAlign: 'center',
+  width: '38px',
+  color: 'rgb(255, 255, 255)',
+};
+
+const minNightsTd = {
+  width: '40px',
+  height: '39px',
+  background: 'rgb(237, 246, 246)',
+  color: 'rgb(255, 255, 255)',
+  border: '2px solid rgb(255, 255, 255)',
+  borderRadius: '7px',
+  padding: '0px',
+  background: 'rgb(204,238,235)',
+};
 
 class Day extends React.Component {
   constructor(props) {
@@ -95,20 +126,88 @@ class Day extends React.Component {
     this.state = {
       checkIn: false,
       checkDate: null,
+      highLight: false,
     };
     this.checkDate = this.checkDate.bind(this);
+
+    this.mouseOutCheck = this.mouseOutCheck.bind(this);
+    this.mouseOverCheck = this.mouseOverCheck.bind(this);
   }
 
   checkDate(e) {
     // if click date same as checkin date ignore it
+
     if (this.props.checkInDate !== this.props.checkDate) {
       this.props.setCheckIn(this.props.checkDate);
+    }
+  }
+
+  mouseOverCheck(e) {
+    this.setState({ highLight: true });
+    if (this.props.checkInDate === this.props.checkDate) {
+      console.log('hey highlight min nights!');
+      this.props.showMinNights();
+    }
+  }
+
+  mouseOutCheck(e) {
+    this.setState({ highLight: false });
+    if (this.props.checkInDate === this.props.checkDate) {
+      console.log('hey mouseout  no highlight min nights!');
+      this.props.noMinNights();
     }
   }
 
   render() {
     // console.log(this.props.minNights);
     // console.log(this.props.checkInDate);
+
+    let tdStyling = minNightsTd;
+    let divStyling = minNightsDiv;
+    // console.log(this.props.highLight);
+
+    if (this.props.highLight) {
+      return (
+        <td
+          onClick={this.checkDate}
+          style={tdStyling}
+          key={this.props.d}
+          className="calendar-day"
+          onMouseOver={this.mouseOverCheck}
+          onMouseOut={this.mouseOutCheck}
+        >
+          <div style={div1}>
+            <div style={div2}>
+              <div style={divStyling}>{this.props.d}</div>
+            </div>
+          </div>
+        </td>
+      );
+    }
+
+
+    if (this.state.highLight && !this.props.selected) {
+      tdStyling = highLightTd;
+      divStyling = availableDiv;
+      return (
+        <td
+          onClick={this.checkDate}
+          style={tdStyling}
+          key={this.props.d}
+          className="calendar-day"
+          onMouseOver={this.mouseOverCheck}
+          onMouseOut={this.mouseOutCheck}
+        >
+          <div style={div1}>
+            <div style={div2}>
+              <div style={divStyling}>{this.props.d}</div>
+            </div>
+          </div>
+        </td>
+      );
+    }
+
+
     if (this.props.booked === 'true') {
       // console.log('inside true!');
       return (
@@ -122,11 +221,19 @@ class Day extends React.Component {
       );
     }
 
-    const tdStyling = this.props.selected ? clickedTd : availableTd;
-    const divStyling = this.props.selected ? clickedDiv : availableDiv;
+    tdStyling = this.props.selected ? clickedTd : availableTd;
+    divStyling = this.props.selected ? clickedDiv : availableDiv;
 
     return (
-      <td onClick={this.checkDate} style={tdStyling} key={this.props.d} className="calendar-day">
+      <td
+        onClick={this.checkDate}
+        style={tdStyling}
+        key={this.props.d}
+        className="calendar-day"
+        onMouseOver={this.mouseOverCheck}
+        onMouseOut={this.mouseOutCheck}
+      >
+
         <div style={div1}>
           <div style={div2}>
             <div style={divStyling}>{this.props.d}</div>

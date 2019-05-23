@@ -19,6 +19,7 @@ class Calendar extends React.Component {
       checkIn: null,
       checkOut: null,
       lastDay: null,
+      secondCheckIn: false,
     };
 
 
@@ -69,6 +70,7 @@ class Calendar extends React.Component {
       checkOut: null,
       clicked: false,
       lastDay: null,
+      secondCheckIn: false,
     });
   }
 
@@ -83,54 +85,86 @@ class Calendar extends React.Component {
   }
 
   setCheckIn(date) {
-    if (this.state.checkIn !== null && this.state.checkOut !== null) {
+    const newLastDay = this.lookForLastDay(date);
+    if (!this.state.secondCheckIn) {
+      if (this.state.checkIn !== null && this.state.checkOut !== null) {
       // reset new checkIn date last day is less than checkout then reset checkout
       // set new checkin
-      const newLastDay = this.lookForLastDay(date);
 
-      if (newLastDay < this.state.checkOut) {
+
+        // if second check in is false then we can reset checkin
+        // if true then we can reset checkout
+
+        if (newLastDay < this.state.checkOut) {
         // reset checkin date
-        this.setState({
-          checkIn: date,
-          checkOut: null,
-          lastDay: newLastDay,
-          renderAll: false,
-          clicked: true,
-        });
-      } else if (date < this.state.checkOut) {
-        this.setState({ checkIn: date });
-      } else {
+          console.log('hey new last day is less than checkout so checkin:', date);
+          this.setState({
+            checkIn: date,
+            checkOut: null,
+            lastDay: newLastDay,
+            renderAll: false,
+            clicked: true,
+          });
+        } else if (date < this.state.checkOut) {
+          console.log('date less than checkot so new checkin date', date);
+          this.setState({
+            checkIn: date,
+            secondCheckIn: true,
+          });
+        } else {
+          const lastCheckOutDay = this.lookForLastDay(date);
+          console.log('last checkout date greater! new checkin date:', date);
+          console.log('lasrtcheckout: ', lastCheckOutDay);
+          this.setState({
+            checkIn: date,
+            checkOut: null,
+            lastDay: lastCheckOutDay,
+            renderAll: false,
+            clicked: true,
+          });
+        }
+      } else if (this.state.checkIn === null) {
+        console.log('setting first checkin date: ', date);
         const lastCheckOutDay = this.lookForLastDay(date);
         this.setState({
           checkIn: date,
-          checkOut: null,
           lastDay: lastCheckOutDay,
           renderAll: false,
           clicked: true,
+
         });
+      } else if (this.state.checkIn !== null) {
+        console.log('check in not  null for checkout', date);
+        this.setCheckOut(date);
       }
-    } else if (this.state.checkIn === null) {
-      const lastCheckOutDay = this.lookForLastDay(date);
-      this.setState({
-        checkIn: date,
-        lastDay: lastCheckOutDay,
-        renderAll: false,
-        clicked: true,
-      });
-    } else if (this.state.checkIn !== null) {
+    } else {
+      console.log('Already second checkin go change checkout', date);
       this.setCheckOut(date);
     }
   }
 
   setCheckOut(date) {
-    // console.log('inside calendar setcheckOUT', date);
-
-    this.setState({
-      checkOut: date,
-      lastDay: null,
-      renderAll: true,
-    });
-    // console.log('current checkout date', date);
+    const lastCheckOutDay = this.lookForLastDay(this.state.checkIn);
+    console.log(lastCheckOutDay);
+    if (date > lastCheckOutDay) {
+      console.log('checkout date greater than last day so resetting checkin date: ', date);
+      const lastCheckOutDay = this.lookForLastDay(date);
+      this.setState({
+        checkIn: date,
+        checkOut: null,
+        lastDay: lastCheckOutDay,
+        renderAll: false,
+        clicked: true,
+        secondCheckIn: false,
+      });
+    } else {
+      this.setState({
+        checkOut: date,
+        lastDay: null,
+        renderAll: true,
+        secondCheckIn: false,
+      });
+    }
   }
 
   render() {
@@ -213,6 +247,7 @@ class Calendar extends React.Component {
                         lastDay={this.state.lastDay}
                         renderAll={this.state.renderAll}
                         minNights={this.props.listing.minNights}
+                        secondCheckIn={this.state.secondCheckIn}
                       />
                     </table>
                   </div>
@@ -231,6 +266,7 @@ class Calendar extends React.Component {
                         lastDay={this.state.lastDay}
                         renderAll={this.state.renderAll}
                         minNights={this.props.listing.minNights}
+                        secondCheckIn={this.state.secondCheckIn}
                       />
                     </table>
                   </div>

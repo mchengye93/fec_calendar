@@ -148,8 +148,7 @@ class Day extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkIn: false,
-      checkDate: null,
+
       highLight: false,
     };
     this.checkDate = this.checkDate.bind(this);
@@ -169,7 +168,6 @@ class Day extends React.Component {
   mouseOverCheck(e) {
     this.setState({ highLight: true });
     if (this.props.checkInDate === this.props.checkDate) {
-      console.log('hey highlight min nights!');
       this.props.showMinNights();
     }
   }
@@ -177,18 +175,13 @@ class Day extends React.Component {
   mouseOutCheck(e) {
     this.setState({ highLight: false });
     if (this.props.checkInDate === this.props.checkDate) {
-      console.log('hey mouseout  no highlight min nights!');
       this.props.noMinNights();
     }
   }
 
   render() {
-    // console.log(this.props.minNights);
-    // console.log(this.props.checkInDate);
-
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
-    // console.log(this.props.highLight);
 
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (

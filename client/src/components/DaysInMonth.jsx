@@ -67,7 +67,7 @@ class DaysInMonth extends React.Component {
     // console.log('minimum days to book', minBookDate);
 
     if (date > checkInDate && date < minBookDate) {
-      console.log('This day falls between checkin and minbookdate', date);
+      // console.log('This day falls between checkin and minbookdate', date);
       return true;
     }
     return false;
@@ -85,19 +85,16 @@ class DaysInMonth extends React.Component {
     // console.log('minimum days to book', minBookDate);
 
     if (date > checkInDate && date <= minBookDate) {
-      console.log('This day falls between checkin and minbookdate', date);
       return true;
     }
     return false;
   }
 
   showMinNights() {
-    console.log('show min ngihts called!');
     this.setState({ highLight: true });
   }
 
   noMinNights() {
-    console.log('nominnights called!!');
     this.setState({ highLight: false });
   }
 
@@ -157,7 +154,6 @@ class DaysInMonth extends React.Component {
         }
         if (selected === false) {
           if (this.blackOutMinNights(new Date(date))) {
-            console.log('this day is in min nights!', date);
             blackOutMinNights = true;
           }
         }
@@ -166,7 +162,6 @@ class DaysInMonth extends React.Component {
       const minDate = false;
       if (this.inMinNights(new Date(date)) && this.state.highLight) {
         minDate = true;
-        console.log('falls in min nights!');
       }
 
       if (this.bookedDay(date) || beforeCurrent || beforeCheckIn || afterLastDay || blackOutMinNights) {

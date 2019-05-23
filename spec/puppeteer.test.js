@@ -88,3 +88,29 @@ describe('Button Test Suite', () => {
     expect(nextValue).toEqual(nextNextMonth);
   });
 });
+describe('Clear Date Button Test Suite', () => {
+  beforeEach(async () => {
+    await page.goto(url, { waitUntil: 'networkidle2' });
+  });
+
+  test('On page start clear date does not exist', async () => {
+    const clearButtonCount = await page.$$eval('#clearDate', button => button.length);
+    expect(clearButtonCount).toBe(0);
+  });
+
+  test('Click a calendar day and expect Clear date to pop up', async () => {
+    await page.click('#click');
+    await page.waitFor(2000);
+    const clearButtonCount = await page.$$eval('#clearDate', button => button.length);
+
+    expect(clearButtonCount).toBe(1);
+  });
+
+  test('Clicking clear date should make clear date button dissapear', async () => {
+    await page.click('#click');
+    await page.waitFor(2000);
+    await page.click('#clearDate');
+    const clearButtonCount = await page.$$eval('#clearDate', button => button.length);
+    expect(clearButtonCount).toBe(0);
+  });
+});

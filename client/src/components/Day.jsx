@@ -193,6 +193,7 @@ class Day extends React.Component {
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
         <td
+          id="click"
           onClick={this.checkDate}
           style={tdStyling}
           key={this.props.d}
@@ -215,6 +216,7 @@ class Day extends React.Component {
       divStyling = availableDiv;
       return (
         <td
+          id="click"
           onClick={this.checkDate}
           style={tdStyling}
           key={this.props.d}
@@ -252,6 +254,7 @@ class Day extends React.Component {
     if (this.props.checkInDate === this.props.checkDate && this.props.checkOutDate === null) {
       return (
         <td
+          id="click"
           onClick={this.checkDate}
           style={tdStyling}
           key={this.props.d}
@@ -285,6 +288,7 @@ night minimum stay
     }
     return (
       <td
+        id="click"
         onClick={this.checkDate}
         style={tdStyling}
         key={this.props.d}

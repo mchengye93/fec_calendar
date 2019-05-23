@@ -76,7 +76,7 @@ class Message extends React.Component {
               {' '}
                 night miminum stay · Updated today
             </span>
-            <button onClick={this.clearDate} style={buttonSpan} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>Clear dates</button>
+            <button id="clearDate" onClick={this.clearDate} style={buttonSpan} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>Clear dates</button>
           </div>
         );
       }
@@ -88,7 +88,7 @@ class Message extends React.Component {
             {' '}
               night miminum stay · Updated today
           </span>
-          <button onClick={this.props.clearDate} style={buttonSpan1} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>Clear dates</button>
+          <button id="clearDate" onClick={this.props.clearDate} style={buttonSpan1} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>Clear dates</button>
         </div>
       );
     }

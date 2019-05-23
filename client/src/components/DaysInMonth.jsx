@@ -131,6 +131,11 @@ class DaysInMonth extends React.Component {
         }
       }
 
+      const minDate = false;
+      if (this.inMinNights(new Date(date))) {
+        minDate = true;
+        console.log('falls in min nights!');
+      }
 
       if (this.bookedDay(date) || beforeCurrent || beforeCheckIn || afterLastDay || blackOutMinNights) {
         daysInMonth.push(<Day
@@ -146,6 +151,7 @@ class DaysInMonth extends React.Component {
           setCheckIn={this.props.setCheckIn}
           selected={selected}
           minNights={this.props.minNights}
+
         />);
       }
     }

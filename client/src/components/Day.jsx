@@ -126,6 +126,7 @@ class Day extends React.Component {
     this.state = {
       checkIn: false,
       checkDate: null,
+      highLight: false,
     };
     this.checkDate = this.checkDate.bind(this);
 
@@ -135,6 +136,7 @@ class Day extends React.Component {
 
   checkDate(e) {
     // if click date same as checkin date ignore it
+
     if (this.props.checkInDate !== this.props.checkDate) {
       this.props.setCheckIn(this.props.checkDate);
     }
@@ -162,9 +164,31 @@ class Day extends React.Component {
 
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
-    console.log(this.props.highLight);
+    // console.log(this.props.highLight);
 
     if (this.props.highLight) {
+      return (
+        <td
+          onClick={this.checkDate}
+          style={tdStyling}
+          key={this.props.d}
+          className="calendar-day"
+          onMouseOver={this.mouseOverCheck}
+          onMouseOut={this.mouseOutCheck}
+        >
+          <div style={div1}>
+            <div style={div2}>
+              <div style={divStyling}>{this.props.d}</div>
+            </div>
+          </div>
+        </td>
+      );
+    }
+
+
+    if (this.state.highLight && !this.props.selected) {
+      tdStyling = highLightTd;
+      divStyling = availableDiv;
       return (
         <td
           onClick={this.checkDate}

@@ -12,6 +12,30 @@ const Td = styled.td`
 
 `;
 
+const MessageDiv = styled.div` 
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: rgb(118, 118, 118) 0px 1px 2px !important;
+  color: rgb(72, 72, 72) !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: max-content !important;
+  z-index: 1 !important;
+  transform: translateY(-100%) translateY(-4px) !important;
+  border-radius: 2px !important;
+  padding: 2px 4px !important;
+`;
+
+const MessageSpan = styled.span` 
+  overflow-wrap: break-word !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.33333em !important;
+  color: rgb(72, 72, 72) !important;
+
+`;
+
+
 const bookedTd = {
   width: '40px',
   height: '39px',
@@ -221,9 +245,44 @@ class Day extends React.Component {
       );
     }
 
+
     tdStyling = this.props.selected ? clickedTd : availableTd;
     divStyling = this.props.selected ? clickedDiv : availableDiv;
 
+    if (this.props.checkInDate === this.props.checkDate) {
+      return (
+        <td
+          onClick={this.checkDate}
+          style={tdStyling}
+          key={this.props.d}
+          className="calendar-day"
+          onMouseOver={this.mouseOverCheck}
+          onMouseOut={this.mouseOutCheck}
+        >
+          <div style={div1}>
+            <MessageDiv>
+
+              <div>
+                <MessageSpan>
+                  <span>
+                    <div>
+                      {this.props.minNights}
+                      {' '}
+night minimum stay
+                      {' '}
+                    </div>
+                  </span>
+                </MessageSpan>
+              </div>
+            </MessageDiv>
+
+            <div style={div2}>
+              <div style={divStyling}>{this.props.d}</div>
+            </div>
+          </div>
+        </td>
+      );
+    }
     return (
       <td
         onClick={this.checkDate}

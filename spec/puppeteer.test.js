@@ -56,7 +56,6 @@ describe('Button Test Suite', () => {
   test('Current Month ', async () => {
     const value = await page.$eval('.current-month-calendar', e => e.textContent);
     const currentMonth = moment().format('MMMM YYYY');
-    console.log(currentMonth);
 
     expect(value).toEqual(currentMonth);
   });
@@ -88,6 +87,7 @@ describe('Button Test Suite', () => {
     expect(nextValue).toEqual(nextNextMonth);
   });
 });
+
 describe('Clear Date Button Test Suite', () => {
   beforeEach(async () => {
     await page.goto(url, { waitUntil: 'networkidle2' });
@@ -113,4 +113,39 @@ describe('Clear Date Button Test Suite', () => {
     const clearButtonCount = await page.$$eval('#clearDate', button => button.length);
     expect(clearButtonCount).toBe(0);
   });
+});
+
+describe('Min Day Span Test Suite', () => {
+  beforeEach(async () => {
+    await page.goto(url, { waitUntil: 'networkidle2' });
+  });
+
+  test('No day clicked then no min day div', async () => {
+    const minNightSpanCount = await page.$$eval('#minNightsSpan', span => span.length);
+    expect(minNightSpanCount).toBe(0);
+  });
+
+  test('Click a calendar day and expect min day to span pop up', async () => {
+    await page.click('#click');
+    await page.waitFor(2000);
+    const minNightSpanCount = await page.$$eval('#minNightsSpan', span => span.length);
+    expect(minNightSpanCount).toBe(1);
+  });
+
+  test('When clearDate is picked then min day span should be gone', async () => {
+    await page.click('#click');
+    await page.waitFor(2000);
+    await page.click('#clearDate');
+    const minNightSpanCount = await page.$$eval('#minNightsSpan', span => span.length);
+    expect(minNightSpanCount).toBe(0);
+  });
+
+  // test('Clicked checkin and checkout day expect min day be gone', async () => {
+  //   await page.click('#click');
+  //   await page.waitFor(2000);
+  //   await page.click('#click');
+  //   await page.waitFor(2000);
+  //   const minNightSpanCount = await page.$$eval('#minNightsSpan', span => span.length);
+  //   expect(minNightSpanCount).toBe(0);
+  // });
 });

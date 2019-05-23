@@ -128,12 +128,31 @@ class Day extends React.Component {
       checkDate: null,
     };
     this.checkDate = this.checkDate.bind(this);
+
+    this.mouseOutCheck = this.mouseOutCheck.bind(this);
+    this.mouseOverCheck = this.mouseOverCheck.bind(this);
   }
 
   checkDate(e) {
     // if click date same as checkin date ignore it
     if (this.props.checkInDate !== this.props.checkDate) {
       this.props.setCheckIn(this.props.checkDate);
+    }
+  }
+
+  mouseOverCheck(e) {
+    this.setState({ highLight: true });
+    if (this.props.checkInDate === this.props.checkDate) {
+      console.log('hey highlight min nights!');
+      this.props.minNights();
+    }
+  }
+
+  mouseOutCheck(e) {
+    this.setState({ highLight: false });
+    if (this.props.checkInDate === this.props.checkDate) {
+      console.log('hey mouseout  no highlight min nights!');
+      this.props.noMinNights();
     }
   }
 

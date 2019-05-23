@@ -19,6 +19,7 @@ class Calendar extends React.Component {
       checkIn: null,
       checkOut: null,
       lastDay: null,
+      secondCheckIn: false,
     };
 
 
@@ -69,6 +70,7 @@ class Calendar extends React.Component {
       checkOut: null,
       clicked: false,
       lastDay: null,
+      secondCheckIn: false,
     });
   }
 
@@ -88,6 +90,9 @@ class Calendar extends React.Component {
       // set new checkin
       const newLastDay = this.lookForLastDay(date);
 
+      // if second check in is false then we can reset checkin
+      // if true then we can reset checkout
+
       if (newLastDay < this.state.checkOut) {
         // reset checkin date
         this.setState({
@@ -98,7 +103,10 @@ class Calendar extends React.Component {
           clicked: true,
         });
       } else if (date < this.state.checkOut) {
-        this.setState({ checkIn: date });
+        this.setState({
+          checkIn: date,
+          secondCheckIn: true,
+        });
       } else {
         const lastCheckOutDay = this.lookForLastDay(date);
         this.setState({
@@ -213,6 +221,7 @@ class Calendar extends React.Component {
                         lastDay={this.state.lastDay}
                         renderAll={this.state.renderAll}
                         minNights={this.props.listing.minNights}
+                        secondCheckIn={this.state.secondCheckIn}
                       />
                     </table>
                   </div>
@@ -231,6 +240,7 @@ class Calendar extends React.Component {
                         lastDay={this.state.lastDay}
                         renderAll={this.state.renderAll}
                         minNights={this.props.listing.minNights}
+                        secondCheckIn={this.state.secondCheckIn}
                       />
                     </table>
                   </div>

@@ -133,7 +133,7 @@ class DaysInMonth extends React.Component {
 
       // if render all we dont care about checkin now
       const beforeCheckIn = false;
-      if (!this.props.renderAll) {
+      if (!this.props.renderAll || this.props.secondCheckIn) {
         beforeCheckIn = new Date(date) < new Date(this.props.checkInDate);
       }
 

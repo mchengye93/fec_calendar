@@ -170,7 +170,6 @@ class DaysInMonth extends React.Component {
           booked="true"
           highLight={minDate}
           checkOutDate={this.props.checkOutDate}
-
         />);
       } else {
         daysInMonth.push(<Day

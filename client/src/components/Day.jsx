@@ -254,7 +254,7 @@ class Day extends React.Component {
     if (this.props.checkInDate === this.props.checkDate && this.props.checkOutDate === null) {
       return (
         <td
-          id="click"
+          id="click1"
           onClick={this.checkDate}
           style={tdStyling}
           key={this.props.d}

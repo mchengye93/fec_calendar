@@ -150,15 +150,16 @@ class Calendar extends React.Component {
   }
 
   setCheckOut(date) {
-    const lastCheckOutDay = this.lookForLastDay(this.state.checkIn);
+    const { checkIn } = this.state;
+    const lastCheckOutDay = this.lookForLastDay(checkIn);
     console.log(lastCheckOutDay);
     if (date > lastCheckOutDay) {
       console.log('checkout date greater than last day so resetting checkin date: ', date);
-      const lastCheckOutDay = this.lookForLastDay(date);
+      const newLastDay = this.lookForLastDay(date);
       this.setState({
         checkIn: date,
         checkOut: null,
-        lastDay: lastCheckOutDay,
+        lastDay: newLastDay,
         renderAll: false,
         clicked: true,
         secondCheckIn: false,

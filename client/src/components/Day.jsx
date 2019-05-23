@@ -144,7 +144,7 @@ class Day extends React.Component {
     this.setState({ highLight: true });
     if (this.props.checkInDate === this.props.checkDate) {
       console.log('hey highlight min nights!');
-      this.props.minNights();
+      this.props.showMinNights();
     }
   }
 
@@ -163,6 +163,7 @@ class Day extends React.Component {
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
     console.log(this.props.highLight);
+
     if (this.props.highLight) {
       return (
         <td
@@ -200,7 +201,15 @@ class Day extends React.Component {
     divStyling = this.props.selected ? clickedDiv : availableDiv;
 
     return (
-      <td onClick={this.checkDate} style={tdStyling} key={this.props.d} className="calendar-day">
+      <td
+        onClick={this.checkDate}
+        style={tdStyling}
+        key={this.props.d}
+        className="calendar-day"
+        onMouseOver={this.mouseOverCheck}
+        onMouseOut={this.mouseOutCheck}
+      >
+
         <div style={div1}>
           <div style={div2}>
             <div style={divStyling}>{this.props.d}</div>

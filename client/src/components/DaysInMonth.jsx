@@ -8,6 +8,7 @@ class DaysInMonth extends React.Component {
     super(props);
     this.state = {
       dateObject: this.props.month,
+      highLight: false,
 
     };
 
@@ -19,6 +20,9 @@ class DaysInMonth extends React.Component {
 
     this.bookedDay = this.bookedDay.bind(this);
     this.blackOutMinNights = this.blackOutMinNights.bind(this);
+
+    this.showMinNights = this.showMinNights.bind(this);
+    this.noMinNights = this.noMinNights.bind(this);
   }
 
 
@@ -67,6 +71,34 @@ class DaysInMonth extends React.Component {
       return true;
     }
     return false;
+  }
+
+  inMinNights(date) {
+    const checkInDate = new Date(this.props.checkInDate);
+    const { minNights } = this.props;
+
+
+    const minBookDate = new Date(checkInDate);
+    minBookDate.setDate(checkInDate.getDate() + minNights);
+
+    // console.log('checkinDate:', checkInDate);
+    // console.log('minimum days to book', minBookDate);
+
+    if (date > checkInDate && date <= minBookDate) {
+      console.log('This day falls between checkin and minbookdate', date);
+      return true;
+    }
+    return false;
+  }
+
+  showMinNights() {
+    console.log('show min ngihts called!');
+    this.setState({ highLight: true });
+  }
+
+  noMinNights() {
+    console.log('nominnights called!!');
+    this.setState({ highLight: false });
   }
 
 
@@ -132,7 +164,7 @@ class DaysInMonth extends React.Component {
       }
 
       const minDate = false;
-      if (this.inMinNights(new Date(date))) {
+      if (this.inMinNights(new Date(date)) && this.state.highLight) {
         minDate = true;
         console.log('falls in min nights!');
       }
@@ -141,6 +173,7 @@ class DaysInMonth extends React.Component {
         daysInMonth.push(<Day
           d={d}
           booked="true"
+
         />);
       } else {
         daysInMonth.push(<Day
@@ -151,6 +184,9 @@ class DaysInMonth extends React.Component {
           setCheckIn={this.props.setCheckIn}
           selected={selected}
           minNights={this.props.minNights}
+          highLight={minDate}
+          noMinNights={this.noMinNights}
+          showMinNights={this.showMinNights}
 
         />);
       }

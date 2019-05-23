@@ -87,6 +87,8 @@ class DaysInMonth extends React.Component {
 
 
   daysInMonth() {
+    console.log('checkIn date: ', this.props.checkInDate);
+    console.log('checkoutdate: ', this.props.checkOutDate);
     const { dateObject } = this.state;
     const totalDaysInMonth = moment(dateObject).daysInMonth();
     const { bookings } = this.props.listing;

@@ -88,6 +88,37 @@ const availableDiv = {
   color: 'rgb(0, 132, 137)',
 };
 
+const highLightTd = {
+  width: '40px',
+  height: '39px',
+  background: 'rgb(237, 246, 246)',
+  color: 'rgb(0, 132, 137)',
+  border: '2px solid rgb(255, 255, 255)',
+  borderRadius: '7px',
+  padding: '0px',
+  background: 'rgb(204,238,235)',
+};
+
+const minNightsDiv = {
+  fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
+  fontWeight: '700',
+  height: '12px',
+  lineHeight: '12px',
+  textAlign: 'center',
+  width: '38px',
+  color: 'rgb(255, 255, 255)',
+};
+
+const minNightsTd = {
+  width: '40px',
+  height: '39px',
+  background: 'rgb(237, 246, 246)',
+  color: 'rgb(255, 255, 255)',
+  border: '2px solid rgb(255, 255, 255)',
+  borderRadius: '7px',
+  padding: '0px',
+  background: 'rgb(204,238,235)',
+};
 
 class Day extends React.Component {
   constructor(props) {

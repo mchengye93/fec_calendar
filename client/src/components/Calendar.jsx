@@ -215,9 +215,9 @@ class Calendar extends React.Component {
         <div style={style2}>
           <section>
             <div style={style3}>
-              <h2>
+              <h3>
                 <div>Availability</div>
-              </h2>
+              </h3>
             </div>
             <Message
               clicked={this.state.clicked}

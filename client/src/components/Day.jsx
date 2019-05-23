@@ -249,7 +249,7 @@ class Day extends React.Component {
     tdStyling = this.props.selected ? clickedTd : availableTd;
     divStyling = this.props.selected ? clickedDiv : availableDiv;
 
-    if (this.props.checkInDate === this.props.checkDate) {
+    if (this.props.checkInDate === this.props.checkDate && this.props.checkOutDate === null) {
       return (
         <td
           onClick={this.checkDate}

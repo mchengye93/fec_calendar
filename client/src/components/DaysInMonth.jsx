@@ -34,9 +34,6 @@ class DaysInMonth extends React.Component {
   }
 
   bookedDay(date) {
-    // convert the day to moment;
-    // console.log(date);
-
     const booked = this.props.listing.bookings;
     if (booked !== undefined) {
       // console.log(booked);
@@ -50,21 +47,15 @@ class DaysInMonth extends React.Component {
       }
     }
     return false;
-    // console.log('booked contains', booked.includes(day));
   }
 
   blackOutMinNights(date) {
-    // add min nights to selected date
-    // console.log(date);
     const checkInDate = new Date(this.props.checkInDate);
     const { minNights } = this.props;
 
 
     const minBookDate = new Date(checkInDate);
     minBookDate.setDate(checkInDate.getDate() + minNights);
-
-    // console.log('checkinDate:', checkInDate);
-    // console.log('minimum days to book', minBookDate);
 
     if (date > checkInDate && date < minBookDate) {
       // console.log('This day falls between checkin and minbookdate', date);
@@ -77,12 +68,8 @@ class DaysInMonth extends React.Component {
     const checkInDate = new Date(this.props.checkInDate);
     const { minNights } = this.props;
 
-
     const minBookDate = new Date(checkInDate);
     minBookDate.setDate(checkInDate.getDate() + minNights);
-
-    // console.log('checkinDate:', checkInDate);
-    // console.log('minimum days to book', minBookDate);
 
     if (date > checkInDate && date <= minBookDate) {
       return true;
@@ -104,24 +91,19 @@ class DaysInMonth extends React.Component {
     const totalDaysInMonth = moment(dateObject).daysInMonth();
     const { bookings } = this.props.listing;
 
-    // console.log('bookings', bookings);
+
     const month = moment(dateObject).format('MM');
     const year = moment(dateObject).format('YYYY');
 
 
-    // console.log('month', month);
-    // console.log('year', year);
     const daysInMonth = [];
     for (let d = 1; d <= totalDaysInMonth; d += 1) {
       const day = d > 9 ? d : `0${d}`;
       const date = `${year}-${month}-${day}`;
-      // const booked = this.bookedDay(date) ? 'booked' : '';
 
       const currentDate = new Date();
       currentDate.setDate(currentDate.getDate() - 1);
       const beforeCurrent = new Date(date) < currentDate;
-
-      // const beforeCheckIn = new Date(date) < new Date(this.props.checkInDate);
 
       const afterLastDay = false;
       if (this.props.lastDay !== null) {

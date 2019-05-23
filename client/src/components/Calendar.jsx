@@ -135,8 +135,6 @@ class Calendar extends React.Component {
   }
 
   setCheckOut(date) {
-    // console.log('inside calendar setcheckOUT', date);
-
     this.setState({
       checkOut: date,
       lastDay: null,
@@ -147,7 +145,6 @@ class Calendar extends React.Component {
       const lastCheckOutDay = this.lookForLastDay(date);
       this.setState({ lastDay: lastCheckOutDay });
     }
-    // console.log('current checkout date', date);
   }
 
   render() {

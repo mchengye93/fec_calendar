@@ -11,7 +11,7 @@ class Calendar extends React.Component {
     super(props);
 
     this.state = {
-      // eslint-disable-next-line react/destructuring-assignment
+
       listing: {},
       dateObject: moment(),
       nextMonth: moment().add(1, 'months'),
@@ -86,8 +86,14 @@ class Calendar extends React.Component {
 
   setCheckIn(date) {
     const newLastDay = this.lookForLastDay(date);
-    if (!this.state.secondCheckIn) {
-      if (this.state.checkIn !== null && this.state.checkOut !== null) {
+
+    const { checkIn } = this.state;
+    const { checkOut } = this.state;
+
+    const { secondCheckIn } = this.state;
+
+    if (!secondCheckIn) {
+      if (checkIn !== null && checkOut !== null) {
       // reset new checkIn date last day is less than checkout then reset checkout
       // set new checkin
 
@@ -95,7 +101,7 @@ class Calendar extends React.Component {
         // if second check in is false then we can reset checkin
         // if true then we can reset checkout
 
-        if (newLastDay < this.state.checkOut) {
+        if (newLastDay < checkOut) {
         // reset checkin date
           console.log('hey new last day is less than checkout so checkin:', date);
           this.setState({
@@ -105,7 +111,7 @@ class Calendar extends React.Component {
             renderAll: false,
             clicked: true,
           });
-        } else if (date < this.state.checkOut) {
+        } else if (date < checkOut) {
           console.log('date less than checkot so new checkin date', date);
           this.setState({
             checkIn: date,
@@ -123,7 +129,7 @@ class Calendar extends React.Component {
             clicked: true,
           });
         }
-      } else if (this.state.checkIn === null) {
+      } else if (checkIn === null) {
         console.log('setting first checkin date: ', date);
         const lastCheckOutDay = this.lookForLastDay(date);
         this.setState({
@@ -133,7 +139,7 @@ class Calendar extends React.Component {
           clicked: true,
 
         });
-      } else if (this.state.checkIn !== null) {
+      } else if (checkIn !== null) {
         console.log('check in not  null for checkout', date);
         this.setCheckOut(date);
       }

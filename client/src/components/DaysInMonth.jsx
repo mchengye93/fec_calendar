@@ -174,6 +174,7 @@ class DaysInMonth extends React.Component {
           d={d}
           booked="true"
           highLight={minDate}
+          checkOutDate={this.props.checkOutDate}
 
         />);
       } else {
@@ -181,6 +182,7 @@ class DaysInMonth extends React.Component {
           d={d}
           booked="false"
           checkInDate={this.props.checkInDate}
+          checkOutDate={this.props.checkOutDate}
           checkDate={date}
           setCheckIn={this.props.setCheckIn}
           selected={selected}

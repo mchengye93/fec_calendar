@@ -166,7 +166,7 @@ class Day extends React.Component {
     let divStyling = minNightsDiv;
     // console.log(this.props.highLight);
 
-    if (this.props.highLight) {
+    if (this.props.highLight && this.props.checkOutDate === null) {
       return (
         <td
           onClick={this.checkDate}

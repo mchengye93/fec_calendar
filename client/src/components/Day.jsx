@@ -170,6 +170,11 @@ class Day extends React.Component {
     if (this.props.checkInDate === this.props.checkDate) {
       this.props.showMinNights();
     }
+    if (this.props.checkDate > this.props.checkInDate
+      && this.props.checkInDate !== null && this.props.checkOutDate === null) {
+      this.props.showNightsBeforeLast(this.props.checkDate);
+    }
+    console.log('this day less than last day?', this.props.showNightsBeforeLast(this.props.checkDate));
   }
 
   mouseOutCheck(e) {
@@ -182,6 +187,9 @@ class Day extends React.Component {
   render() {
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
+    if (this.props.checkDate < this.props.lastDay) {
+      console.log('current day less than last day!');
+    }
 
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (

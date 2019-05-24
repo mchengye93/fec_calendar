@@ -174,7 +174,7 @@ class Day extends React.Component {
       && this.props.checkInDate !== null && this.props.checkOutDate === null) {
       this.props.showNightsBeforeLast(this.props.checkDate);
     }
-    console.log('this day less than last day?', this.props.showNightsBeforeLast(this.props.checkDate));
+    // console.log('this day less than last day?', this.props.showNightsBeforeLast(this.props.checkDate));
   }
 
   mouseOutCheck(e) {

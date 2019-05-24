@@ -12,7 +12,6 @@ class Calendar extends React.Component {
 
     this.state = {
 
-      listing: {},
       dateObject: moment(),
       nextMonth: moment().add(1, 'months'),
       clicked: false,
@@ -40,10 +39,41 @@ class Calendar extends React.Component {
     this.showMinNights = this.showMinNights.bind(this);
     this.noMinNights = this.noMinNights.bind(this);
     this.showNightsBeforeLast = this.showNightsBeforeLast.bind(this);
+
+    this.meetMinNights = this.meetMinNights.bind(this);
   }
 
   componentDidMount() {
 
+  }
+
+  meetMinNights(date) {
+    const { minNights } = this.props.listing;
+    const { checkIn } = this.state;
+    const { checkOut } = this.state;
+
+    const lastCheckInDate = new Date(checkOut);
+    // lastCheckInDate.setDate(lastCheckInDate.getDate() - minNights);
+
+    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
+
+    const date1 = lastCheckInDate.toLocaleString('en-US', options);
+
+
+    // calculate different between new date and checkout
+    const newDate = new Date(date);
+    const dayDiff = lastCheckInDate.getDate() - newDate.getDate();
+
+    console.log('difference between new dat and checkout', dayDiff);
+    // console.log('inside minNightsLastDate :', minNights);
+    console.log('current Checkindate:', checkIn);
+    console.log('current checkoutdate:', checkOut);
+    console.log('min last day to checkin', date1);
+
+    if (dayDiff >= 0 && dayDiff < minNights) {
+      return false;
+    }
+    return true;
   }
 
 
@@ -53,9 +83,34 @@ class Calendar extends React.Component {
     const { checkIn } = this.state;
     const { checkOut } = this.state;
 
-    const { secondCheckIn } = this.state;
 
-    if (!secondCheckIn) {
+    const { secondCheckIn } = this.state;
+    const { lastDay } = this.state;
+
+
+    // console.log('checkin date: ', checkIn);
+    // console.log('checkoutdate: ', checkOut);
+
+
+    // console.log('lastDay:', lastDay);
+
+
+    // minimum nights last day
+    // console.log('checkin date: ', checkIn);
+    // console.log('new Date :', date);
+    // const minNightsLastDate = this.meetMinNights(date);
+    // console.log(this.meetMinNights(date));
+    // console.log('minlast date:', minNightsLastDate);
+    if (!this.meetMinNights(date) && checkOut !== null) {
+      this.setState({
+        checkIn: date,
+        checkOut: null,
+        lastDay: newLastDay,
+        renderAll: false,
+        clicked: true,
+
+      });
+    } else if (!secondCheckIn) {
       if (checkIn !== null && checkOut !== null) {
       // reset new checkIn date last day is less than checkout then reset checkout
       // set new checkin

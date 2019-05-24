@@ -112,15 +112,15 @@ class DaysInMonth extends React.Component {
 
 
   daysInMonth() {
-    console.log('checkIn date: ', this.props.checkInDate);
-    console.log('checkoutdate: ', this.props.checkOutDate);
+    // console.log('checkIn date: ', this.props.checkInDate);
+    // console.log('checkoutdate: ', this.props.checkOutDate);
 
     if (this.props.lastHoverDate !== null) {
-      console.log('lastHover date:', this.props.lastHoverDate);
+      // console.log('lastHover date:', this.props.lastHoverDate);
     }
 
 
-    console.log('lastDay', this.props.lastDay);
+    // console.log('lastDay', this.props.lastDay);
     const { dateObject } = this.state;
     const totalDaysInMonth = moment(dateObject).daysInMonth();
     const { bookings } = this.props.listing;
@@ -183,7 +183,7 @@ class DaysInMonth extends React.Component {
 
       if (this.props.lastHoverDate !== null) {
         if (date <= this.props.lastHoverDate && date > this.props.checkInDate) {
-          console.log('hey less than last day!');
+          // console.log('hey less than last day!');
           minDate = true;
         }
       }

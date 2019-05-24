@@ -103,7 +103,7 @@ class Calendar extends React.Component {
 
         if (newLastDay < checkOut) {
         // reset checkin date
-          console.log('hey new last day is less than checkout so checkin:', date);
+          // console.log('hey new last day is less than checkout so checkin:', date);
           this.setState({
             checkIn: date,
             checkOut: null,
@@ -112,15 +112,15 @@ class Calendar extends React.Component {
             clicked: true,
           });
         } else if (date < checkOut) {
-          console.log('date less than checkot so new checkin date', date);
+          // console.log('date less than checkot so new checkin date', date);
           this.setState({
             checkIn: date,
             secondCheckIn: true,
           });
         } else {
           const lastCheckOutDay = this.lookForLastDay(date);
-          console.log('last checkout date greater! new checkin date:', date);
-          console.log('lasrtcheckout: ', lastCheckOutDay);
+          //  console.log('last checkout date greater! new checkin date:', date);
+          // console.log('lasrtcheckout: ', lastCheckOutDay);
           this.setState({
             checkIn: date,
             checkOut: null,
@@ -130,7 +130,7 @@ class Calendar extends React.Component {
           });
         }
       } else if (checkIn === null) {
-        console.log('setting first checkin date: ', date);
+        // console.log('setting first checkin date: ', date);
         const lastCheckOutDay = this.lookForLastDay(date);
         this.setState({
           checkIn: date,
@@ -140,7 +140,7 @@ class Calendar extends React.Component {
 
         });
       } else if (checkIn !== null) {
-        console.log('check in not  null for checkout', date);
+        // console.log('check in not  null for checkout', date);
         this.setCheckOut(date);
       }
     } else {
@@ -152,9 +152,9 @@ class Calendar extends React.Component {
   setCheckOut(date) {
     const { checkIn } = this.state;
     const lastCheckOutDay = this.lookForLastDay(checkIn);
-    console.log(lastCheckOutDay);
+    // console.log(lastCheckOutDay);
     if (date > lastCheckOutDay) {
-      console.log('checkout date greater than last day so resetting checkin date: ', date);
+      // console.log('checkout date greater than last day so resetting checkin date: ', date);
       const newLastDay = this.lookForLastDay(date);
       this.setState({
         checkIn: date,

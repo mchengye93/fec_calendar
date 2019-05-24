@@ -186,7 +186,7 @@ class DaysInMonth extends React.Component {
       }
 
       if (this.state.lastHoverDate !== null) {
-        if (date < this.state.lastHoverDate && date > this.props.checkInDate) {
+        if (date <= this.state.lastHoverDate && date > this.props.checkInDate) {
           console.log('hey less than last day!');
           minDate = true;
         }

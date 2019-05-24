@@ -20,6 +20,8 @@ class Calendar extends React.Component {
       checkOut: null,
       lastDay: null,
       secondCheckIn: false,
+      lastHoverDate: null,
+      highLight: false,
     };
 
 
@@ -34,55 +36,16 @@ class Calendar extends React.Component {
     this.setCheckOut = this.setCheckOut.bind(this);
 
     this.lookForLastDay = this.lookForLastDay.bind(this);
+
+    this.showMinNights = this.showMinNights.bind(this);
+    this.noMinNights = this.noMinNights.bind(this);
+    this.showNightsBeforeLast = this.showNightsBeforeLast.bind(this);
   }
 
   componentDidMount() {
 
   }
 
-  backwardMonth() {
-    this.setState({ dateObject: this.state.dateObject.subtract(1, 'months') });
-    this.setState({ nextMonth: this.state.nextMonth.subtract(1, 'months') });
-  }
-
-
-  // change current month to next
-  forwardMonth() {
-    this.setState({ dateObject: this.state.dateObject.add(1, 'months') });
-    this.setState({ nextMonth: this.state.nextMonth.add(1, 'months') });
-  }
-
-
-  month() {
-    return (
-
-      this.state.dateObject.format('MMMM YYYY')
-    );
-  }
-
-  nextMonth() {
-    return this.state.nextMonth.format('MMMM YYYY');
-  }
-
-  clearDate() {
-    this.setState({
-      checkIn: null,
-      checkOut: null,
-      clicked: false,
-      lastDay: null,
-      secondCheckIn: false,
-    });
-  }
-
-  lookForLastDay(date) {
-    const { bookings } = this.props.listing;
-    for (let i = 0; i < bookings.length; i += 1) {
-      const bookingDate = bookings[i];
-      if (bookingDate > date) {
-        return (bookingDate);
-      }
-    }
-  }
 
   setCheckIn(date) {
     const newLastDay = this.lookForLastDay(date);
@@ -174,6 +137,80 @@ class Calendar extends React.Component {
     }
   }
 
+  showMinNights() {
+    this.setState({ highLight: true });
+  }
+
+  noMinNights() {
+    this.setState({
+      highLight: false,
+      lastHoverDate: null,
+    });
+  }
+
+  showNightsBeforeLast(date) {
+    if (this.state.lastDay !== null) {
+      const { checkIn } = this.state;
+      const { lastDay } = this.state;
+      console.log('hover date:', date);
+      console.log('checkin date', checkIn);
+      console.log('lastday', lastDay.split('T')[0]);
+      if (date > checkIn && date < lastDay) {
+        console.log('Before last day:', date);
+        this.setState({ lastHoverDate: date });
+        return true;
+      }
+    }
+    return false;
+  }
+
+  backwardMonth() {
+    this.setState({ dateObject: this.state.dateObject.subtract(1, 'months') });
+    this.setState({ nextMonth: this.state.nextMonth.subtract(1, 'months') });
+  }
+
+
+  // change current month to next
+  forwardMonth() {
+    this.setState({ dateObject: this.state.dateObject.add(1, 'months') });
+    this.setState({ nextMonth: this.state.nextMonth.add(1, 'months') });
+  }
+
+
+  month() {
+    return (
+
+      this.state.dateObject.format('MMMM YYYY')
+    );
+  }
+
+  nextMonth() {
+    return this.state.nextMonth.format('MMMM YYYY');
+  }
+
+
+  clearDate() {
+    this.setState({
+      checkIn: null,
+      checkOut: null,
+      clicked: false,
+      lastDay: null,
+      highLight: false,
+      secondCheckIn: false,
+    });
+  }
+
+  lookForLastDay(date) {
+    const { bookings } = this.props.listing;
+    for (let i = 0; i < bookings.length; i += 1) {
+      const bookingDate = bookings[i];
+      if (bookingDate > date) {
+        return (bookingDate);
+      }
+    }
+  }
+
+
   render() {
     const style1 = {
       width: '100%',
@@ -255,6 +292,11 @@ class Calendar extends React.Component {
                         renderAll={this.state.renderAll}
                         minNights={this.props.listing.minNights}
                         secondCheckIn={this.state.secondCheckIn}
+                        noMinNights={this.noMinNights}
+                        showMinNights={this.showMinNights}
+                        showNightsBeforeLast={this.showNightsBeforeLast}
+                        highLight={this.state.highLight}
+                        lastHoverDate={this.state.lastHoverDate}
                       />
                     </table>
                   </div>
@@ -274,6 +316,11 @@ class Calendar extends React.Component {
                         renderAll={this.state.renderAll}
                         minNights={this.props.listing.minNights}
                         secondCheckIn={this.state.secondCheckIn}
+                        noMinNights={this.noMinNights}
+                        showMinNights={this.showMinNights}
+                        showNightsBeforeLast={this.showNightsBeforeLast}
+                        highLight={this.state.highLight}
+                        lastHoverDate={this.state.lastHoverDate}
                       />
                     </table>
                   </div>

@@ -2,10 +2,53 @@
 import React from 'react';
 import moment from 'moment';
 
+import styled from 'styled-components';
 import WeekDays from './WeekDays.jsx';
 import DaysInMonth from './DaysInMonth.jsx';
 import Button from './Button.jsx';
 import Message from './Message.jsx';
+
+import styles from './styles/Calendar.module.css';
+
+const Style1 = styled.div`
+width: '100%';
+vertical-align: 'bottom';
+`;
+
+const Style2 = styled.div`
+margin-bottom: 0px;
+`;
+
+const Style3 = styled.div`
+margin-bottom: 16px;
+`;
+
+const StyleBot = styled.div`
+margin-top:24px;
+margin-bottom: 24px;
+`;
+
+const StyleCalendar = styled.div`
+width: 800px;
+`;
+
+const Calendars = styled.div`
+transform: translateX(0px);
+width: 307px;
+display: inline-block;
+padding: 0px 13px;
+`;
+
+const Month = styled.div`
+color: rgb(72, 72, 72);
+font-size: 18px;
+text-align: center;
+padding-top: 22px;
+padding-bottom: 37px;
+caption-side: initial;
+font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+text-align: center;
+`;
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -63,7 +106,7 @@ class Calendar extends React.Component {
 
     if (dayDiff < minNights) {
       const newLastDay = this.lookForLastDay(date);
-      console.log('This is an invalid checkin date!');
+
       this.setState({
         checkIn: date,
         checkOut: null,
@@ -123,15 +166,11 @@ class Calendar extends React.Component {
     const { checkIn } = this.state;
     const { checkOut } = this.state;
 
-
     const { secondCheckIn } = this.state;
-
 
     if (!secondCheckIn) {
       if (checkIn !== null && checkOut !== null) {
         if (newLastDay < checkOut) {
-        // reset checkin date
-          // console.log('hey new last day is less than checkout so checkin:', date);
           this.setState({
             checkIn: date,
             checkOut: null,
@@ -223,8 +262,6 @@ class Calendar extends React.Component {
     this.setState({ nextMonth: this.state.nextMonth.subtract(1, 'months') });
   }
 
-
-  // change current month to next
   forwardMonth() {
     this.setState({ dateObject: this.state.dateObject.add(1, 'months') });
     this.setState({ nextMonth: this.state.nextMonth.add(1, 'months') });
@@ -264,125 +301,101 @@ class Calendar extends React.Component {
 
 
   render() {
-    const style1 = {
-      width: '100%',
-      verticalAlign: 'bottom',
-
-    };
-    const style2 = {
-      marginBottom: '0px',
-    };
-
-    const style3 = {
-      marginBottom: '16px',
-    };
-
-    const styleBot = {
-      marginTop: '24px',
-      marginBottom: '24px',
-    };
-
-    const styleCalendar = {
-      width: '800px',
-    };
-
-
-    const calendars = {
-      transform: 'translateX(0px)',
-      width: '307px',
-      display: 'inline-block',
-      padding: '0px 13px',
-
-    };
-
-    const monthStyle = {
-      color: 'rgb(72, 72, 72)',
-      fontSize: '18px',
-      textSlign: 'center',
-      paddingTop: '22px',
-      paddingBottom: '37px',
-      captionSide: 'initial',
-      fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
-      textAlign: 'center',
-    };
-
     return (
-      <div style={style1}>
-        <div style={style2}>
-          <section>
-            <div style={style3}>
-              <h3>
-                <div>Availability</div>
-              </h3>
-            </div>
-            <Message
-              clicked={this.state.clicked}
-              minNights={this.props.listing.minNights}
-              clearDate={this.clearDate}
-            />
-            <div style={styleCalendar}>
+      <Style1>
+        <div>
+          <Style2>
+            <div>
+              <section>
+                <Style3>
+                  <div>
+                    <h3>
+                      <div>Availability</div>
+                    </h3>
+                  </div>
+                  <Message
+                    clicked={this.state.clicked}
+                    minNights={this.props.listing.minNights}
+                    clearDate={this.clearDate}
+                  />
+                  <StyleCalendar>
+                    <div>
 
-              <div id="calendarContainer">
-                <Button
-                  backwardMonth={this.backwardMonth}
-                  forwardMonth={this.forwardMonth}
-                />
-                <div id="calendars">
-                  <div id="calendar1" style={calendars}>
-                    <div style={monthStyle} className="current-month-calendar">
-                      <strong>{this.month()}</strong>
+                      <div id="calendarContainer">
+                        <Button
+                          backwardMonth={this.backwardMonth}
+                          forwardMonth={this.forwardMonth}
+                        />
+                        <div id="calendars">
+                          <Calendars>
+                            <div id="calendar1">
+                              <Month>
+                                <div className="current-month-calendar">
+                                  <strong>{this.month()}</strong>
+                                </div>
+                              </Month>
+                              <table className="calendar-day">
+                                <WeekDays />
+                                <DaysInMonth
+                                  month={this.state.dateObject}
+                                  listing={this.props.listing}
+                                  setCheckIn={this.setCheckIn}
+                                  checkInDate={this.state.checkIn}
+                                  checkOutDate={this.state.checkOut}
+                                  lastDay={this.state.lastDay}
+                                  renderAll={this.state.renderAll}
+                                  minNights={this.props.listing.minNights}
+                                  secondCheckIn={this.state.secondCheckIn}
+                                  noMinNights={this.noMinNights}
+                                  showMinNights={this.showMinNights}
+                                  showNightsBeforeLast={this.showNightsBeforeLast}
+                                  highLight={this.state.highLight}
+                                  lastHoverDate={this.state.lastHoverDate}
+                                />
+                              </table>
+                            </div>
+                          </Calendars>
+                          <Calendars>
+                            <div id="calendar2">
+                              <Month>
+                                <div className="next-month-calendar">
+                                  <strong>{this.nextMonth()}</strong>
+                                </div>
+                              </Month>
+                              <table className="next-calendar-day">
+                                <WeekDays />
+                                <DaysInMonth
+                                  month={this.state.nextMonth}
+                                  listing={this.props.listing}
+                                  setCheckIn={this.setCheckIn}
+                                  checkInDate={this.state.checkIn}
+                                  checkOutDate={this.state.checkOut}
+                                  lastDay={this.state.lastDay}
+                                  renderAll={this.state.renderAll}
+                                  minNights={this.props.listing.minNights}
+                                  secondCheckIn={this.state.secondCheckIn}
+                                  noMinNights={this.noMinNights}
+                                  showMinNights={this.showMinNights}
+                                  showNightsBeforeLast={this.showNightsBeforeLast}
+                                  highLight={this.state.highLight}
+                                  lastHoverDate={this.state.lastHoverDate}
+                                />
+                              </table>
+                            </div>
+                          </Calendars>
+                        </div>
+                      </div>
                     </div>
-                    <table className="calendar-day">
-                      <WeekDays />
-                      <DaysInMonth
-                        month={this.state.dateObject}
-                        listing={this.props.listing}
-                        setCheckIn={this.setCheckIn}
-                        checkInDate={this.state.checkIn}
-                        checkOutDate={this.state.checkOut}
-                        lastDay={this.state.lastDay}
-                        renderAll={this.state.renderAll}
-                        minNights={this.props.listing.minNights}
-                        secondCheckIn={this.state.secondCheckIn}
-                        noMinNights={this.noMinNights}
-                        showMinNights={this.showMinNights}
-                        showNightsBeforeLast={this.showNightsBeforeLast}
-                        highLight={this.state.highLight}
-                        lastHoverDate={this.state.lastHoverDate}
-                      />
-                    </table>
-                  </div>
-                  <div id="calendar2" style={calendars}>
-                    <div style={monthStyle} className="next-month-calendar">
-                      <strong>{this.nextMonth()}</strong>
-                    </div>
-                    <table className="next-calendar-day">
-                      <WeekDays />
-                      <DaysInMonth
-                        month={this.state.nextMonth}
-                        listing={this.props.listing}
-                        setCheckIn={this.setCheckIn}
-                        checkInDate={this.state.checkIn}
-                        checkOutDate={this.state.checkOut}
-                        lastDay={this.state.lastDay}
-                        renderAll={this.state.renderAll}
-                        minNights={this.props.listing.minNights}
-                        secondCheckIn={this.state.secondCheckIn}
-                        noMinNights={this.noMinNights}
-                        showMinNights={this.showMinNights}
-                        showNightsBeforeLast={this.showNightsBeforeLast}
-                        highLight={this.state.highLight}
-                        lastHoverDate={this.state.lastHoverDate}
-                      />
-                    </table>
-                  </div>
-                </div>
-              </div>
+                  </StyleCalendar>
+                  <StyleBot>
+                    <div>{' '}</div>
+                  </StyleBot>
+                </Style3>
+              </section>
             </div>
-            <div style={styleBot}>{' '}</div>
-          </section>
+          </Style2>
         </div>
-      </div>
+      </Style1>
     );
   }
 }

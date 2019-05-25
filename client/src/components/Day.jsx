@@ -187,9 +187,6 @@ class Day extends React.Component {
   render() {
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
-    if (this.props.checkDate < this.props.lastDay) {
-      // console.log('current day less than last day!');
-    }
 
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
@@ -234,9 +231,7 @@ class Day extends React.Component {
       );
     }
 
-
     if (this.props.booked === 'true') {
-      // console.log('inside true!');
       return (
         <td style={bookedTd} key={this.props.d} className="calendar-day booked">
           <div style={div1}>

@@ -1,6 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Div = styled.div`
+font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif';
+font-weight: 700;
+height: 12px;
+line-height: 12px;
+text-align: center;
+width: 38px;
+`;
+
+const AvailableDiv = styled(Div)`
+color: rgb(0, 132, 137);
+`;
+
+const ClickedDiv = styled(Div)`
+color: rgb(255, 255, 255);
+`;
+
+const MinNightsDiv = styled(Div)`
+color:rgb(255, 255, 255);
+`;
 const Td = styled.td`
   width: 40px;
   height: 39px;
@@ -26,6 +46,10 @@ background: rgb(204,238,235);
 color: rgb(0, 132, 137);
 `;
 
+const MinNightsTd = styled(Td)`
+color:rgb(255, 255, 255);
+background: rgb(204,238,235);
+`;
 
 const MessageDiv = styled.div` 
   background-color: rgb(255, 255, 255) !important;
@@ -148,7 +172,7 @@ const minNightsDiv = {
 const minNightsTd = {
   width: '40px',
   height: '39px',
-  color: 'rgb(255, 255, 255)',
+
   border: '1px solid rgb(255, 255, 255)',
   borderRadius: '5px',
   padding: '0px',
@@ -168,15 +192,13 @@ class Day extends React.Component {
     this.mouseOverCheck = this.mouseOverCheck.bind(this);
   }
 
-  checkDate(e) {
-    // if click date same as checkin date ignore it
-
+  checkDate() {
     if (this.props.checkInDate !== this.props.checkDate) {
       this.props.setCheckIn(this.props.checkDate);
     }
   }
 
-  mouseOverCheck(e) {
+  mouseOverCheck() {
     this.setState({ highLight: true });
     if (this.props.checkInDate === this.props.checkDate && this.props.showMinNights !== undefined) {
       this.props.showMinNights();
@@ -188,7 +210,7 @@ class Day extends React.Component {
     // console.log('this day less than last day?', this.props.showNightsBeforeLast(this.props.checkDate));
   }
 
-  mouseOutCheck(e) {
+  mouseOutCheck() {
     this.setState({ highLight: false });
     if (this.props.checkInDate === this.props.checkDate && this.props.noMinNights !== undefined) {
       this.props.noMinNights();

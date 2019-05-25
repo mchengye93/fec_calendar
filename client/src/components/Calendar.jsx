@@ -8,7 +8,6 @@ import DaysInMonth from './DaysInMonth.jsx';
 import Button from './Button.jsx';
 import Message from './Message.jsx';
 
-import styles from './styles/Calendar.module.css';
 
 const Style1 = styled.div`
 width: '100%';
@@ -131,14 +130,13 @@ class Calendar extends React.Component {
 
     const checkInDate = new Date(checkIn);
 
-    // calculate different between new date and checkout
     const newDate = new Date(date);
     const dayDiff = Math.abs(checkInDate.getDate() - newDate.getDate());
 
-    console.log(`New Date is ${dayDiff} from checkin:${checkIn} `);
+
     if (dayDiff < minNights) {
       const newLastDay = this.lookForLastDay(date);
-      console.log('This is an invalid checkout date!');
+
       this.setState({
         checkIn: date,
         checkOut: null,

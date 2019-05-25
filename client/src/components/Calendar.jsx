@@ -42,7 +42,6 @@ class Calendar extends React.Component {
     this.noMinNights = this.noMinNights.bind(this);
     this.showNightsBeforeLast = this.showNightsBeforeLast.bind(this);
 
-    this.meetMinNights = this.meetMinNights.bind(this);
 
     this.minDayAwayCheckOut = this.minDayAwayCheckOut.bind(this);
     this.minDayAwayCheckIn = this.minDayAwayCheckIn.bind(this);
@@ -57,11 +56,6 @@ class Calendar extends React.Component {
     const { checkOut } = this.state;
 
     const checkOutDate = new Date(checkOut);
-
-    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
-
-    // const date1 = lastCheckInDate.toLocaleString('en-US', options);
-
 
     // calculate different between new date and checkout
     const newDate = new Date(date);
@@ -86,8 +80,6 @@ class Calendar extends React.Component {
         isCheckIn: false,
       });
     }
-
-    console.log(`New Date is ${dayDiff} from checkout:${checkOut}`);
   }
 
   minDayAwayCheckIn(date) {
@@ -95,11 +87,6 @@ class Calendar extends React.Component {
     const { checkIn } = this.state;
 
     const checkInDate = new Date(checkIn);
-
-    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
-
-    // const date1 = lastCheckInDate.toLocaleString('en-US', options);
-
 
     // calculate different between new date and checkout
     const newDate = new Date(date);
@@ -138,24 +125,7 @@ class Calendar extends React.Component {
 
 
     const { secondCheckIn } = this.state;
-    const { lastDay } = this.state;
 
-
-    console.log('Check in?', this.state.isCheckIn);
-
-    /*
-    // if it is checkin and checkout is not null then check
-    // if meet min requirement date < lastMinDate
-    if (this.state.isCheckIn && this.state.checkOut !== null) {
-      console.log('Make sure new check in 3 days before,', checkOut);
-      // check in new date is min days aways from checkout
-      this.minDayAwayCheckOut(date);
-    } else if (!this.state.isCheckIn) {
-      // we are looking at checkout then we must check and see if
-      // new checkout is min days away from checkin
-      console.log('Make sure new checkout is 3 days away from ', checkIn);
-      this.minDayAwayCheckIn(date);
-    } */
 
     if (!secondCheckIn) {
       if (checkIn !== null && checkOut !== null) {
@@ -171,19 +141,10 @@ class Calendar extends React.Component {
             isCheckIn: false,
           });
         } else if (date < checkOut) {
-          // console.log('date less than checkot so new checkin date', date);
           this.minDayAwayCheckOut(date);
-
-          /*
-          this.setState({
-            checkIn: date,
-            secondCheckIn: true,
-            isCheckIn: false,
-          }); */
         } else {
           const lastCheckOutDay = this.lookForLastDay(date);
-          //  console.log('last checkout date greater! new checkin date:', date);
-          // console.log('lasrtcheckout: ', lastCheckOutDay);
+
           this.setState({
             checkIn: date,
             checkOut: null,
@@ -194,8 +155,6 @@ class Calendar extends React.Component {
           });
         }
       } else if (checkIn === null) {
-        // console.log('setting first checkin date: ', date);
-        // console.log('setting checkin');
         const lastCheckOutDay = this.lookForLastDay(date);
         this.setState({
           checkIn: date,
@@ -206,37 +165,19 @@ class Calendar extends React.Component {
 
         });
       } else if (checkIn !== null) {
-        // console.log('check in not  null for checkout', date);
-        // console.log('setting checkout');
         this.setCheckOut(date);
       }
     } else {
-      // console.log('Already second checkin go change checkout', date);
-      // console.log('setting checkout');
       this.setCheckOut(date);
     }
   }
 
   setCheckOut(date) {
     const { checkIn } = this.state;
-    const { checkOut } = this.state;
 
     const lastCheckOutDay = this.lookForLastDay(checkIn);
-    // console.log(lastCheckOutDay);
-    // if (!this.meetMinNights(date) && checkOut !== null) {
-    //   this.setState({
-    //     checkIn: date,
-    //     checkOut: null,
-    //     lastDay: newLastDay,
-    //     renderAll: false,
-    //     clicked: true,
-    //     secondCheckIn: false,
-    //     isCheckIn: false,
 
-    //   });
-    // }
     if (date > lastCheckOutDay) {
-      // console.log('checkout date greater than last day so resetting checkin date: ', date);
       const newLastDay = this.lookForLastDay(date);
       this.setState({
         checkIn: date,
@@ -249,53 +190,9 @@ class Calendar extends React.Component {
       });
     } else {
       this.minDayAwayCheckIn(date);
-      /*
-      this.setState({
-        checkOut: date,
-        lastDay: null,
-        renderAll: true,
-        secondCheckIn: false,
-        isCheckIn: true,
-      }); */
     }
   }
 
-  meetMinNights(date) {
-    const { minNights } = this.props.listing;
-    const { checkIn } = this.state;
-    const { checkOut } = this.state;
-
-    const lastCheckInDate = new Date(checkOut);
-
-    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
-
-    const date1 = lastCheckInDate.toLocaleString('en-US', options);
-
-
-    // calculate different between new date and checkout
-    const newDate = new Date(date);
-    const dayDiff = lastCheckInDate.getDate() - newDate.getDate();
-
-
-    if (this.state.secondCheckIn) {
-      // console.log('Hey make sure checkout is 3 days from checkIn', checkIn);
-    }
-
-    if (!this.state.secondCheckIn) {
-      // console.log('Make sure checkout in is 3 days aways from checkin', date);
-    }
-    const checkInDate = new Date(checkIn);
-    // calculate day diff with checkin
-    const dayDiffCheckIn = Math.abs(checkInDate.getDate() - newDate.getDate());
-
-
-    const dayDiffCheckOut = Math.abs(lastCheckInDate.getDate() - newDate.getDate());
-
-    if (dayDiffCheckOut >= 0 && dayDiffCheckOut < minNights) {
-      return false;
-    }
-    return true;
-  }
 
   showMinNights() {
     this.setState({ highLight: true });
@@ -336,7 +233,6 @@ class Calendar extends React.Component {
 
   month() {
     return (
-
       this.state.dateObject.format('MMMM YYYY')
     );
   }
@@ -344,7 +240,6 @@ class Calendar extends React.Component {
   nextMonth() {
     return this.state.nextMonth.format('MMMM YYYY');
   }
-
 
   clearDate() {
     this.setState({

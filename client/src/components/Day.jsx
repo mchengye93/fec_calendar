@@ -2,15 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Td = styled.td`
-  width: '40px',
-  height: '39px',
-  background: 'repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 3px, rgb(235, 235, 235) 3px, rgb(235, 235, 235) 4px)',
-  color: 'rgb(0, 0, 0)',
-  border: '1px solid rgb(255, 255, 255)',
-  borde-radius: '5px ',
-  padding: '0px',
+  width: 40px;
+  height: 39px;
+  color: rgb(0, 0, 0);
+  border: 1px solid rgb(255, 255, 255);
+  borde-radius: 5px;
+  padding: 0px;
 
 `;
+const ClickedTd = styled(Td)`
+background: rgb(0, 132, 137);
+`;
+
+const BookedTd = styled(Td)`
+background: repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 3px, rgb(235, 235, 235) 3px, rgb(235, 235, 235) 4px);
+`;
+const AvailableTd = styled(Td)`
+background: rgb(237, 246, 246);
+color: rgb(0, 132, 137);
+`;
+const HighlightTd = styled(Td)`
+background: rgb(204,238,235);
+color: rgb(0, 132, 137);
+`;
+
 
 const MessageDiv = styled.div` 
   background-color: rgb(255, 255, 255) !important;
@@ -35,6 +50,18 @@ const MessageSpan = styled.span`
 
 `;
 
+const Div1 = styled.div`
+height: 38px;
+position: relative;
+width: 38px;
+margin: 0px;
+`;
+
+const Div2 = styled.div`
+padding-bottom: 13px;
+padding-top:13px;
+font-size:13px
+`;
 
 const bookedTd = {
   width: '40px',
@@ -44,20 +71,6 @@ const bookedTd = {
   border: '1px solid rgb(255, 255, 255)',
   borderRadius: '5px ',
   padding: '0px',
-};
-
-const div1 = {
-  height: '38px',
-  position: 'relative',
-  width: '38px',
-  margin: '0px',
-};
-
-const div2 = {
-  paddingBottom: '13px',
-  paddingTop: '13px',
-  fontSize: '13px',
-
 };
 
 const bookedDiv = {
@@ -115,7 +128,6 @@ const availableDiv = {
 const highLightTd = {
   width: '40px',
   height: '39px',
-  background: 'rgb(237, 246, 246)',
   color: 'rgb(0, 132, 137)',
   border: '1px solid rgb(255, 255, 255)',
   borderRadius: '5px',
@@ -136,7 +148,6 @@ const minNightsDiv = {
 const minNightsTd = {
   width: '40px',
   height: '39px',
-  background: 'rgb(237, 246, 246)',
   color: 'rgb(255, 255, 255)',
   border: '1px solid rgb(255, 255, 255)',
   borderRadius: '5px',
@@ -199,11 +210,14 @@ class Day extends React.Component {
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
         >
-          <div style={div1}>
-            <div style={div2}>
+          <Div1>
+
+            <Div2>
               <div style={divStyling}>{this.props.d}</div>
-            </div>
-          </div>
+            </Div2>
+
+          </Div1>
+
         </td>
       );
     }
@@ -222,11 +236,14 @@ class Day extends React.Component {
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
         >
-          <div style={div1}>
-            <div style={div2}>
+          <Div1>
+
+            <Div2>
               <div style={divStyling}>{this.props.d}</div>
-            </div>
-          </div>
+            </Div2>
+
+          </Div1>
+
         </td>
       );
     }
@@ -234,11 +251,13 @@ class Day extends React.Component {
     if (this.props.booked === 'true') {
       return (
         <td style={bookedTd} key={this.props.d} className="calendar-day booked">
-          <div style={div1}>
-            <div style={div2}>
+          <Div1>
+
+            <Div2>
               <div style={bookedDiv}>{this.props.d}</div>
-            </div>
-          </div>
+            </Div2>
+
+          </Div1>
         </td>
       );
     }
@@ -258,7 +277,8 @@ class Day extends React.Component {
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
         >
-          <div style={div1}>
+          <Div1>
+
             <MessageDiv>
 
               <div>
@@ -275,10 +295,11 @@ night minimum stay
               </div>
             </MessageDiv>
 
-            <div style={div2}>
+            <Div2>
               <div style={divStyling}>{this.props.d}</div>
-            </div>
-          </div>
+            </Div2>
+
+          </Div1>
         </td>
       );
     }
@@ -292,12 +313,14 @@ night minimum stay
         onMouseOver={this.mouseOverCheck}
         onMouseOut={this.mouseOutCheck}
       >
+        <Div1>
+          <Div2>
 
-        <div style={div1}>
-          <div style={div2}>
             <div style={divStyling}>{this.props.d}</div>
-          </div>
-        </div>
+
+          </Div2>
+
+        </Div1>
       </td>
     );
   }

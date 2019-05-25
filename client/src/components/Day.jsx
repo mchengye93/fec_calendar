@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif';
+font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif';
 font-weight: 700;
 height: 12px;
 line-height: 12px;
@@ -223,10 +223,10 @@ class Day extends React.Component {
 
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
-        <td
+        <MinNightsTd
           id="click1"
           onClick={this.checkDate}
-          style={tdStyling}
+
           key={this.props.d}
           className="calendar-day"
           onMouseOver={this.mouseOverCheck}
@@ -240,7 +240,7 @@ class Day extends React.Component {
 
           </Div1>
 
-        </td>
+        </MinNightsTd>
       );
     }
 

@@ -206,7 +206,6 @@ class Day extends React.Component {
   render() {
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
-
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
         <MinNightsTd
@@ -235,7 +234,6 @@ class Day extends React.Component {
     if (this.props.booked === 'true') {
       return (
         <BookedTd
-
           key={this.props.d}
           className="calendar-day booked"
         >
@@ -256,12 +254,10 @@ class Day extends React.Component {
         <HighlightTd
           id="click"
           onClick={this.checkDate}
-          style={tdStyling}
           key={this.props.d}
           className="calendar-day"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
-          onBlur={this.mouseOutCheck}
 
         >
           <Div1>
@@ -290,25 +286,23 @@ class Day extends React.Component {
           className="calendar-day selected"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
-          onBlur={this.mouseOutCheck}
 
         >
           <Div1>
 
             <MessageDiv>
 
-              <div>
-                <MessageSpan>
-                  <span>
-                    <div id="minNightsSpan">
-                      {this.props.minNights}
-                      {' '}
+
+              <MessageSpan>
+                <div id="minNightsSpan">
+                  {this.props.minNights}
+                  {' '}
 night minimum stay
-                      {' '}
-                    </div>
-                  </span>
-                </MessageSpan>
-              </div>
+                  {' '}
+                </div>
+
+              </MessageSpan>
+
             </MessageDiv>
 
             <Div2>

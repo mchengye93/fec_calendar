@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
@@ -256,8 +258,6 @@ class Day extends React.Component {
           style={bookedTd}
           key={this.props.d}
           className="calendar-day booked"
-          onMouseOut={this.mouseOutCheck}
-
         >
           <Div1>
 

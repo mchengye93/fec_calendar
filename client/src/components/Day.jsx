@@ -92,16 +92,6 @@ padding-top:13px;
 font-size:13px
 `;
 
-const bookedTd = {
-  width: '40px',
-  height: '39px',
-  background: 'repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 3px, rgb(235, 235, 235) 3px, rgb(235, 235, 235) 4px)',
-  color: 'rgb(0, 0, 0)',
-  border: '1px solid rgb(255, 255, 255)',
-  borderRadius: '5px ',
-  padding: '0px',
-};
-
 const bookedDiv = {
   fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
   fontWeight: '700',
@@ -244,8 +234,8 @@ class Day extends React.Component {
 
     if (this.props.booked === 'true') {
       return (
-        <td
-          style={bookedTd}
+        <BookedTd
+
           key={this.props.d}
           className="calendar-day booked"
         >
@@ -256,7 +246,7 @@ class Day extends React.Component {
             </Div2>
 
           </Div1>
-        </td>
+        </BookedTd>
       );
     }
 
@@ -271,6 +261,7 @@ class Day extends React.Component {
           className="calendar-day"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
+          onBlur={this.mouseOutCheck}
 
         >
           <Div1>
@@ -299,6 +290,7 @@ class Day extends React.Component {
           className="calendar-day selected"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
+          onBlur={this.mouseOutCheck}
 
         >
           <Div1>
@@ -336,6 +328,7 @@ night minimum stay
         className="calendar-day available"
         onMouseOver={this.mouseOverCheck}
         onMouseOut={this.mouseOutCheck}
+        onBlur={this.mouseOutCheck}
       >
         <Div1>
           <Div2>

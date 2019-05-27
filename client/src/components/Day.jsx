@@ -17,10 +17,12 @@ width: 38px;
 
 const AvailableDiv = styled(Div)`
 color: rgb(0, 132, 137);
+background: rgb(237, 246, 246);
 `;
 
 const ClickedDiv = styled(Div)`
 color: rgb(255, 255, 255);
+background: rgb(0, 132, 137);
 `;
 
 const MinNightsDiv = styled(Div)`
@@ -204,7 +206,6 @@ class Day extends React.Component {
 
 
   render() {
-    let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
@@ -273,15 +274,15 @@ class Day extends React.Component {
     }
 
 
-    tdStyling = this.props.selected ? clickedTd : availableTd;
+    const tdStyling = this.props.selected ? clickedTd : availableTd;
     divStyling = this.props.selected ? clickedDiv : availableDiv;
 
     if (this.props.checkInDate === this.props.checkDate && this.props.checkOutDate === null) {
       return (
-        <td
+        <ClickedTd
           id="click1"
           onClick={this.checkDate}
-          style={tdStyling}
+
           key={this.props.d}
           className="calendar-day selected"
           onMouseOver={this.mouseOverCheck}
@@ -289,10 +290,7 @@ class Day extends React.Component {
 
         >
           <Div1>
-
             <MessageDiv>
-
-
               <MessageSpan>
                 <div id="minNightsSpan">
                   {this.props.minNights}
@@ -300,9 +298,7 @@ class Day extends React.Component {
 night minimum stay
                   {' '}
                 </div>
-
               </MessageSpan>
-
             </MessageDiv>
 
             <Div2>
@@ -310,7 +306,7 @@ night minimum stay
             </Div2>
 
           </Div1>
-        </td>
+        </ClickedTd>
       );
     }
     return (

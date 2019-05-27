@@ -203,7 +203,7 @@ class Day extends React.Component {
   }
 
   mouseOverCheck() {
-    this.setState({ highLight: true });
+    // this.setState({ highLight: true });
     if (this.props.checkInDate === this.props.checkDate && this.props.showMinNights !== undefined) {
       this.props.showMinNights();
     }
@@ -211,13 +211,21 @@ class Day extends React.Component {
       && this.props.checkInDate !== null && this.props.checkOutDate === null) {
       this.props.showNightsBeforeLast(this.props.checkDate);
     }
+    if (this.props.highLightDay !== undefined) {
+      this.props.highLightDay(this.props.checkDate);
+    }
+
+
     // console.log('this day less than last day?', this.props.showNightsBeforeLast(this.props.checkDate));
   }
 
   mouseOutCheck() {
-    this.setState({ highLight: false });
+    // this.setState({ highLight: false });
     if (this.props.checkInDate === this.props.checkDate && this.props.noMinNights !== undefined) {
       this.props.noMinNights();
+    }
+    if (this.props.highLightDay !== undefined) {
+      this.props.highLightDay(null);
     }
   }
 
@@ -225,7 +233,6 @@ class Day extends React.Component {
   render() {
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
-
 
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
@@ -252,7 +259,30 @@ class Day extends React.Component {
       );
     }
 
-    if (this.state.highLight && !this.props.selected) {
+    if (this.props.booked === 'true') {
+      return (
+        <td
+          style={bookedTd}
+          key={this.props.d}
+          className="calendar-day booked"
+          onMouseOut={this.mouseOutCheck}
+
+        >
+          <Div1>
+
+            <Div2>
+              <div style={bookedDiv}>{this.props.d}</div>
+            </Div2>
+
+          </Div1>
+        </td>
+      );
+    }
+
+    console.log(this.props.highLightDate);
+    if (this.props.checkDate === this.props.highLightDate && this.props.highLightDate !== null && !this.props.selected) {
+      console.log('this.props.checkDate', this.props.checkDate);
+      console.log('this.props,highLightDay', this.props.highLightDay);
       tdStyling = highLightTd;
       divStyling = availableDiv;
       return (
@@ -264,8 +294,7 @@ class Day extends React.Component {
           className="calendar-day"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
-          onFocus={this.mouseOverCheck}
-          onBlur={this.mouseOutCheck}
+
         >
           <Div1>
 
@@ -275,20 +304,6 @@ class Day extends React.Component {
 
           </Div1>
 
-        </td>
-      );
-    }
-
-    if (this.props.booked === 'true') {
-      return (
-        <td style={bookedTd} key={this.props.d} className="calendar-day booked">
-          <Div1>
-
-            <Div2>
-              <div style={bookedDiv}>{this.props.d}</div>
-            </Div2>
-
-          </Div1>
         </td>
       );
     }
@@ -307,8 +322,7 @@ class Day extends React.Component {
           className="calendar-day selected"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
-          onFocus={this.mouseOverCheck}
-          onBlur={this.mouseOutCheck}
+
         >
           <Div1>
 
@@ -345,8 +359,7 @@ night minimum stay
         className="calendar-day available"
         onMouseOver={this.mouseOverCheck}
         onMouseOut={this.mouseOutCheck}
-        onFocus={this.mouseOverCheck}
-        onBlur={this.mouseOutCheck}
+
       >
         <Div1>
           <Div2>

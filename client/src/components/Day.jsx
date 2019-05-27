@@ -199,6 +199,7 @@ class Day extends React.Component {
     if (this.props.checkInDate !== this.props.checkDate) {
       this.props.setCheckIn(this.props.checkDate);
     }
+    this.setState({ highLight: false });
   }
 
   mouseOverCheck() {
@@ -251,6 +252,32 @@ class Day extends React.Component {
       );
     }
 
+    if (this.state.highLight && !this.props.selected) {
+      tdStyling = highLightTd;
+      divStyling = availableDiv;
+      return (
+        <td
+          id="click"
+          onClick={this.checkDate}
+          style={tdStyling}
+          key={this.props.d}
+          className="calendar-day"
+          onMouseOver={this.mouseOverCheck}
+          onMouseOut={this.mouseOutCheck}
+          onFocus={this.mouseOverCheck}
+          onBlur={this.mouseOutCheck}
+        >
+          <Div1>
+
+            <Div2>
+              <div style={divStyling}>{this.props.d}</div>
+            </Div2>
+
+          </Div1>
+
+        </td>
+      );
+    }
 
     if (this.props.booked === 'true') {
       return (

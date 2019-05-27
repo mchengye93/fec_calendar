@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -217,9 +220,11 @@ class Day extends React.Component {
     }
   }
 
+
   render() {
     let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
+
 
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
@@ -228,9 +233,11 @@ class Day extends React.Component {
           onClick={this.checkDate}
 
           key={this.props.d}
-          className="calendar-day"
+          className="calendar-day minNights"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
+          onFocus={this.mouseOverCheck}
+          onBlur={this.mouseOutCheck}
         >
           <Div1>
 
@@ -244,31 +251,6 @@ class Day extends React.Component {
       );
     }
 
-
-    if (this.state.highLight && !this.props.selected) {
-      tdStyling = highLightTd;
-      divStyling = availableDiv;
-      return (
-        <td
-          id="click"
-          onClick={this.checkDate}
-          style={tdStyling}
-          key={this.props.d}
-          className="calendar-day"
-          onMouseOver={this.mouseOverCheck}
-          onMouseOut={this.mouseOutCheck}
-        >
-          <Div1>
-
-            <Div2>
-              <div style={divStyling}>{this.props.d}</div>
-            </Div2>
-
-          </Div1>
-
-        </td>
-      );
-    }
 
     if (this.props.booked === 'true') {
       return (
@@ -295,9 +277,11 @@ class Day extends React.Component {
           onClick={this.checkDate}
           style={tdStyling}
           key={this.props.d}
-          className="calendar-day"
+          className="calendar-day selected"
           onMouseOver={this.mouseOverCheck}
           onMouseOut={this.mouseOutCheck}
+          onFocus={this.mouseOverCheck}
+          onBlur={this.mouseOutCheck}
         >
           <Div1>
 
@@ -331,9 +315,11 @@ night minimum stay
         onClick={this.checkDate}
         style={tdStyling}
         key={this.props.d}
-        className="calendar-day"
+        className="calendar-day available"
         onMouseOver={this.mouseOverCheck}
         onMouseOut={this.mouseOutCheck}
+        onFocus={this.mouseOverCheck}
+        onBlur={this.mouseOutCheck}
       >
         <Div1>
           <Div2>
@@ -347,4 +333,5 @@ night minimum stay
     );
   }
 }
+
 export default Day;

@@ -185,10 +185,7 @@ const minNightsTd = {
 class Day extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
 
-      highLight: false,
-    };
     this.checkDate = this.checkDate.bind(this);
 
     this.mouseOutCheck = this.mouseOutCheck.bind(this);
@@ -199,11 +196,9 @@ class Day extends React.Component {
     if (this.props.checkInDate !== this.props.checkDate) {
       this.props.setCheckIn(this.props.checkDate);
     }
-    this.setState({ highLight: false });
   }
 
   mouseOverCheck() {
-    // this.setState({ highLight: true });
     if (this.props.checkInDate === this.props.checkDate && this.props.showMinNights !== undefined) {
       this.props.showMinNights();
     }
@@ -214,13 +209,9 @@ class Day extends React.Component {
     if (this.props.highLightDay !== undefined) {
       this.props.highLightDay(this.props.checkDate);
     }
-
-
-    // console.log('this day less than last day?', this.props.showNightsBeforeLast(this.props.checkDate));
   }
 
   mouseOutCheck() {
-    // this.setState({ highLight: false });
     if (this.props.checkInDate === this.props.checkDate && this.props.noMinNights !== undefined) {
       this.props.noMinNights();
     }

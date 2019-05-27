@@ -154,15 +154,6 @@ const availableDiv = {
   color: 'rgb(0, 132, 137)',
 };
 
-const highLightTd = {
-  width: '40px',
-  height: '39px',
-  color: 'rgb(0, 132, 137)',
-  border: '1px solid rgb(255, 255, 255)',
-  borderRadius: '5px',
-  padding: '0px',
-  background: 'rgb(204,238,235)',
-};
 
 const minNightsDiv = {
   fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
@@ -177,7 +168,6 @@ const minNightsDiv = {
 const minNightsTd = {
   width: '40px',
   height: '39px',
-
   border: '1px solid rgb(255, 255, 255)',
   borderRadius: '5px',
   padding: '0px',
@@ -270,14 +260,10 @@ class Day extends React.Component {
       );
     }
 
-    console.log(this.props.highLightDate);
     if (this.props.checkDate === this.props.highLightDate && this.props.highLightDate !== null && !this.props.selected) {
-      console.log('this.props.checkDate', this.props.checkDate);
-      console.log('this.props,highLightDay', this.props.highLightDay);
-      tdStyling = highLightTd;
       divStyling = availableDiv;
       return (
-        <td
+        <HighlightTd
           id="click"
           onClick={this.checkDate}
           style={tdStyling}
@@ -295,7 +281,7 @@ class Day extends React.Component {
 
           </Div1>
 
-        </td>
+        </HighlightTd>
       );
     }
 
@@ -350,7 +336,6 @@ night minimum stay
         className="calendar-day available"
         onMouseOver={this.mouseOverCheck}
         onMouseOut={this.mouseOutCheck}
-
       >
         <Div1>
           <Div2>

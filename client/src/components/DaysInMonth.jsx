@@ -76,7 +76,6 @@ class DaysInMonth extends React.Component {
 
   highLightDay(date) {
     this.setState({ highLightDate: date });
-    console.log('current highlight date:', date);
   }
 
 

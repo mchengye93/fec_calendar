@@ -17,10 +17,12 @@ width: 38px;
 
 const AvailableDiv = styled(Div)`
 color: rgb(0, 132, 137);
+background: rgb(237, 246, 246);
 `;
 
 const ClickedDiv = styled(Div)`
 color: rgb(255, 255, 255);
+background: rgb(0, 132, 137);
 `;
 
 const MinNightsDiv = styled(Div)`
@@ -92,16 +94,6 @@ padding-top:13px;
 font-size:13px
 `;
 
-const bookedTd = {
-  width: '40px',
-  height: '39px',
-  background: 'repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 3px, rgb(235, 235, 235) 3px, rgb(235, 235, 235) 4px)',
-  color: 'rgb(0, 0, 0)',
-  border: '1px solid rgb(255, 255, 255)',
-  borderRadius: '5px ',
-  padding: '0px',
-};
-
 const bookedDiv = {
   fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
   fontWeight: '700',
@@ -154,15 +146,6 @@ const availableDiv = {
   color: 'rgb(0, 132, 137)',
 };
 
-const highLightTd = {
-  width: '40px',
-  height: '39px',
-  color: 'rgb(0, 132, 137)',
-  border: '1px solid rgb(255, 255, 255)',
-  borderRadius: '5px',
-  padding: '0px',
-  background: 'rgb(204,238,235)',
-};
 
 const minNightsDiv = {
   fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif',
@@ -177,7 +160,6 @@ const minNightsDiv = {
 const minNightsTd = {
   width: '40px',
   height: '39px',
-
   border: '1px solid rgb(255, 255, 255)',
   borderRadius: '5px',
   padding: '0px',
@@ -224,9 +206,7 @@ class Day extends React.Component {
 
 
   render() {
-    let tdStyling = minNightsTd;
     let divStyling = minNightsDiv;
-
     if (this.props.highLight && this.props.checkOutDate === null) {
       return (
         <MinNightsTd
@@ -254,8 +234,7 @@ class Day extends React.Component {
 
     if (this.props.booked === 'true') {
       return (
-        <td
-          style={bookedTd}
+        <BookedTd
           key={this.props.d}
           className="calendar-day booked"
         >
@@ -266,21 +245,16 @@ class Day extends React.Component {
             </Div2>
 
           </Div1>
-        </td>
+        </BookedTd>
       );
     }
 
-    console.log(this.props.highLightDate);
     if (this.props.checkDate === this.props.highLightDate && this.props.highLightDate !== null && !this.props.selected) {
-      console.log('this.props.checkDate', this.props.checkDate);
-      console.log('this.props,highLightDay', this.props.highLightDay);
-      tdStyling = highLightTd;
       divStyling = availableDiv;
       return (
-        <td
+        <HighlightTd
           id="click"
           onClick={this.checkDate}
-          style={tdStyling}
           key={this.props.d}
           className="calendar-day"
           onMouseOver={this.mouseOverCheck}
@@ -295,20 +269,20 @@ class Day extends React.Component {
 
           </Div1>
 
-        </td>
+        </HighlightTd>
       );
     }
 
 
-    tdStyling = this.props.selected ? clickedTd : availableTd;
+    const tdStyling = this.props.selected ? clickedTd : availableTd;
     divStyling = this.props.selected ? clickedDiv : availableDiv;
 
     if (this.props.checkInDate === this.props.checkDate && this.props.checkOutDate === null) {
       return (
-        <td
+        <ClickedTd
           id="click1"
           onClick={this.checkDate}
-          style={tdStyling}
+
           key={this.props.d}
           className="calendar-day selected"
           onMouseOver={this.mouseOverCheck}
@@ -316,21 +290,15 @@ class Day extends React.Component {
 
         >
           <Div1>
-
             <MessageDiv>
-
-              <div>
-                <MessageSpan>
-                  <span>
-                    <div id="minNightsSpan">
-                      {this.props.minNights}
-                      {' '}
+              <MessageSpan>
+                <div id="minNightsSpan">
+                  {this.props.minNights}
+                  {' '}
 night minimum stay
-                      {' '}
-                    </div>
-                  </span>
-                </MessageSpan>
-              </div>
+                  {' '}
+                </div>
+              </MessageSpan>
             </MessageDiv>
 
             <Div2>
@@ -338,7 +306,7 @@ night minimum stay
             </Div2>
 
           </Div1>
-        </td>
+        </ClickedTd>
       );
     }
     return (
@@ -350,7 +318,7 @@ night minimum stay
         className="calendar-day available"
         onMouseOver={this.mouseOverCheck}
         onMouseOut={this.mouseOutCheck}
-
+        onBlur={this.mouseOutCheck}
       >
         <Div1>
           <Div2>

@@ -325,62 +325,60 @@ class Calendar extends React.Component {
                           forwardMonth={this.forwardMonth}
                         />
                         <div id="calendars">
-                          <Calendars>
-                            <div id="calendar1">
-                              <Month>
-                                <div className="current-month-calendar">
-                                  <strong>{this.month()}</strong>
-                                </div>
-                              </Month>
-                              <table className="calendar-day">
-                                <WeekDays />
-                                <DaysInMonth
-                                  month={this.state.dateObject}
-                                  listing={this.props.listing}
-                                  setCheckIn={this.setCheckIn}
-                                  checkInDate={this.state.checkIn}
-                                  checkOutDate={this.state.checkOut}
-                                  lastDay={this.state.lastDay}
-                                  renderAll={this.state.renderAll}
-                                  minNights={this.props.listing.minNights}
-                                  secondCheckIn={this.state.secondCheckIn}
-                                  noMinNights={this.noMinNights}
-                                  showMinNights={this.showMinNights}
-                                  showNightsBeforeLast={this.showNightsBeforeLast}
-                                  highLight={this.state.highLight}
-                                  lastHoverDate={this.state.lastHoverDate}
+                          <Calendars id="calendar1">
 
-                                />
-                              </table>
-                            </div>
+                            <Month>
+                              <div className="current-month-calendar">
+                                <strong>{this.month()}</strong>
+                              </div>
+                            </Month>
+                            <table className="calendar-day">
+                              <WeekDays />
+                              <DaysInMonth
+                                month={this.state.dateObject}
+                                listing={this.props.listing}
+                                setCheckIn={this.setCheckIn}
+                                checkInDate={this.state.checkIn}
+                                checkOutDate={this.state.checkOut}
+                                lastDay={this.state.lastDay}
+                                renderAll={this.state.renderAll}
+                                minNights={this.props.listing.minNights}
+                                secondCheckIn={this.state.secondCheckIn}
+                                noMinNights={this.noMinNights}
+                                showMinNights={this.showMinNights}
+                                showNightsBeforeLast={this.showNightsBeforeLast}
+                                highLight={this.state.highLight}
+                                lastHoverDate={this.state.lastHoverDate}
+                              />
+                            </table>
+
                           </Calendars>
-                          <Calendars>
-                            <div id="calendar2">
-                              <Month>
-                                <div className="next-month-calendar">
-                                  <strong>{this.nextMonth()}</strong>
-                                </div>
-                              </Month>
-                              <table className="next-calendar-day">
-                                <WeekDays />
-                                <DaysInMonth
-                                  month={this.state.nextMonth}
-                                  listing={this.props.listing}
-                                  setCheckIn={this.setCheckIn}
-                                  checkInDate={this.state.checkIn}
-                                  checkOutDate={this.state.checkOut}
-                                  lastDay={this.state.lastDay}
-                                  renderAll={this.state.renderAll}
-                                  minNights={this.props.listing.minNights}
-                                  secondCheckIn={this.state.secondCheckIn}
-                                  noMinNights={this.noMinNights}
-                                  showMinNights={this.showMinNights}
-                                  showNightsBeforeLast={this.showNightsBeforeLast}
-                                  highLight={this.state.highLight}
-                                  lastHoverDate={this.state.lastHoverDate}
-                                />
-                              </table>
-                            </div>
+                          <Calendars id="calendar2">
+
+                            <Month>
+                              <div className="next-month-calendar">
+                                <strong>{this.nextMonth()}</strong>
+                              </div>
+                            </Month>
+                            <table className="next-calendar-day">
+                              <WeekDays />
+                              <DaysInMonth
+                                month={this.state.nextMonth}
+                                listing={this.props.listing}
+                                setCheckIn={this.setCheckIn}
+                                checkInDate={this.state.checkIn}
+                                checkOutDate={this.state.checkOut}
+                                lastDay={this.state.lastDay}
+                                renderAll={this.state.renderAll}
+                                minNights={this.props.listing.minNights}
+                                secondCheckIn={this.state.secondCheckIn}
+                                noMinNights={this.noMinNights}
+                                showMinNights={this.showMinNights}
+                                showNightsBeforeLast={this.showNightsBeforeLast}
+                                highLight={this.state.highLight}
+                                lastHoverDate={this.state.lastHoverDate}
+                              />
+                            </table>
                           </Calendars>
                         </div>
                       </div>

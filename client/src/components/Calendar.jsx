@@ -349,6 +349,7 @@ class Calendar extends React.Component {
                                   showNightsBeforeLast={this.showNightsBeforeLast}
                                   highLight={this.state.highLight}
                                   lastHoverDate={this.state.lastHoverDate}
+
                                 />
                               </table>
                             </div>

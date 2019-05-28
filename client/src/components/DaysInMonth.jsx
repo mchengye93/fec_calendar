@@ -8,6 +8,7 @@ class DaysInMonth extends React.Component {
     super(props);
     this.state = {
       dateObject: this.props.month,
+      highLightDate: null,
 
     };
 
@@ -19,6 +20,8 @@ class DaysInMonth extends React.Component {
 
     this.bookedDay = this.bookedDay.bind(this);
     this.blackOutMinNights = this.blackOutMinNights.bind(this);
+
+    this.highLightDay = this.highLightDay.bind(this);
   }
 
 
@@ -69,6 +72,11 @@ class DaysInMonth extends React.Component {
       return true;
     }
     return false;
+  }
+
+  highLightDay(date) {
+    this.setState({ highLightDate: date });
+    console.log('current highlight date:', date);
   }
 
 
@@ -159,6 +167,8 @@ class DaysInMonth extends React.Component {
           showMinNights={this.props.showMinNights}
           lastDay={this.props.lastDay}
           showNightsBeforeLast={this.props.showNightsBeforeLast}
+          highLightDay={this.highLightDay}
+          highLightDate={this.state.highLightDate}
 
         />);
       }

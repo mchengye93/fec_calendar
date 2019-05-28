@@ -6,7 +6,7 @@ import Calendar from '../../client/src/components/Calendar.jsx';
 
 
 describe('Calendar', () => {
-  const listingArr = [{
+  const listing = {
     listingId: 0,
     bookings:
      ['2019-06-15',
@@ -21,15 +21,15 @@ describe('Calendar', () => {
        '2019-08-10'],
     minNights: 1,
     maxNights: 36,
-  }];
+  };
   it('Calendar components should be defined', () => {
-    const calendar = shallow(<Calendar listing={listingArr} />);
+    const calendar = shallow(<Calendar listing={listing} />);
 
     expect(calendar.exists()).toBe(true);
   });
 
   it('Calendar components state default', () => {
-    const calendar = shallow(<Calendar listing={listingArr} />);
+    const calendar = shallow(<Calendar listing={listing} />);
     const { clicked } = calendar.state();
     const { checkIn } = calendar.state();
     const { checkOut } = calendar.state();

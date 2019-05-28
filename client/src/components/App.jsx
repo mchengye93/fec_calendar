@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
@@ -52,11 +52,10 @@ class App extends React.Component {
       const diffDays = next.diff(current, 'days');
 
       if (diffDays <= minNights) {
-        // console.log('less than min nights!');
         for (let x = 1; x < diffDays; x += 1) {
           const blackOutDay = new Date(current);
           blackOutDay.setDate(blackOutDay.getDate() + x + 1);
-          // console.log(blackOutDay);
+
           newBookings.push(`${moment(blackOutDay).format('YYYY-MM-DD')}T`);
         }
       }

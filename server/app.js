@@ -13,10 +13,8 @@ app.use(express.static(publicDir));
 app.use(bodyParser.json());
 
 app.get('/bookings', (req, res) => {
-  // console.log(req.query);
   const listingIdObj = req.query;
   db.getBookings(listingIdObj, res);
-  // res.end();
 });
 
 module.exports = app;

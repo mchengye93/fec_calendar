@@ -23,7 +23,7 @@ afterAll(() => {
   browser.close();
 });
 
-describe('Button Test Suite', () => {
+xdescribe('Button Test Suite', () => {
   beforeEach(async () => {
     await page.goto(url, { waitUntil: 'networkidle2' });
   });
@@ -88,7 +88,7 @@ describe('Button Test Suite', () => {
   });
 });
 
-describe('Clear Date Button Test Suite', () => {
+xdescribe('Clear Date Button Test Suite', () => {
   beforeEach(async () => {
     await page.goto(url, { waitUntil: 'networkidle2' });
   });
@@ -115,7 +115,7 @@ describe('Clear Date Button Test Suite', () => {
   });
 });
 
-describe('Min Day Span Test Suite', () => {
+xdescribe('Min Day Span Test Suite', () => {
   beforeEach(async () => {
     await page.goto(url, { waitUntil: 'networkidle2' });
   });

@@ -101,7 +101,9 @@ class Calendar extends React.Component {
 
     // calculate different between new date and checkout
     const newDate = new Date(date);
+
     const dayDiff = checkOutDate.getDate() - newDate.getDate();
+
 
     if (dayDiff < minNights) {
       const newLastDay = this.lookForLastDay(date);
@@ -115,13 +117,16 @@ class Calendar extends React.Component {
         secondCheckIn: false,
         isCheckIn: false,
       });
-    } else {
-      this.setState({
-        checkIn: date,
-        secondCheckIn: true,
-        isCheckIn: false,
-      });
+
+      return false;
     }
+
+    this.setState({
+      checkIn: date,
+      secondCheckIn: true,
+      isCheckIn: false,
+    });
+    return true;
   }
 
   minDayAwayCheckIn(date) {
@@ -146,15 +151,17 @@ class Calendar extends React.Component {
         secondCheckIn: false,
         isCheckIn: false,
       });
-    } else {
-      this.setState({
-        checkOut: date,
-        lastDay: null,
-        renderAll: true,
-        secondCheckIn: false,
-        isCheckIn: true,
-      });
+
+      return false;
     }
+    this.setState({
+      checkOut: date,
+      lastDay: null,
+      renderAll: true,
+      secondCheckIn: false,
+      isCheckIn: true,
+    });
+    return true;
   }
 
 

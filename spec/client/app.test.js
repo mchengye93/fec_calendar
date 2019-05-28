@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import App from '../../client/src/components/App.jsx';
 
 
-xdescribe('App', () => {
+describe('App', () => {
   it('<App/> components should be defined', () => {
     const app = shallow(<App />);
     const { listing } = app.state();

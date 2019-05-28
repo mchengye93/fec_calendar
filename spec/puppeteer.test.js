@@ -23,7 +23,7 @@ afterAll(() => {
   browser.close();
 });
 
-xdescribe('Button Test Suite', () => {
+describe('Button Test Suite', () => {
   beforeEach(async () => {
     await page.goto(url, { waitUntil: 'networkidle2' });
   });
@@ -88,7 +88,7 @@ xdescribe('Button Test Suite', () => {
   });
 });
 
-xdescribe('Clear Date Button Test Suite', () => {
+describe('Clear Date Button Test Suite', () => {
   beforeEach(async () => {
     await page.goto(url, { waitUntil: 'networkidle2' });
   });
@@ -115,7 +115,7 @@ xdescribe('Clear Date Button Test Suite', () => {
   });
 });
 
-xdescribe('Min Day Span Test Suite', () => {
+describe('Min Day Span Test Suite', () => {
   beforeEach(async () => {
     await page.goto(url, { waitUntil: 'networkidle2' });
   });
@@ -139,13 +139,4 @@ xdescribe('Min Day Span Test Suite', () => {
     const minNightSpanCount = await page.$$eval('#minNightsSpan', span => span.length);
     expect(minNightSpanCount).toBe(0);
   });
-
-  // test('Clicked checkin and checkout day expect min day be gone', async () => {
-  //   await page.click('#click');
-  //   await page.waitFor(2000);
-  //   await page.click('#click');
-  //   await page.waitFor(2000);
-  //   const minNightSpanCount = await page.$$eval('#minNightsSpan', span => span.length);
-  //   expect(minNightSpanCount).toBe(0);
-  // });
 });

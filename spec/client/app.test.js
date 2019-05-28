@@ -11,7 +11,5 @@ describe('App', () => {
     expect(app.exists()).toBe(true);
     expect(listing).toBeDefined();
     expect(App).toBeDefined();
-    // console.log(app.find(Calendar));
-    // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
   });
 });

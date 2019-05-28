@@ -26,7 +26,6 @@ describe('Calendar', () => {
     const calendar = shallow(<Calendar listing={listingArr} />);
 
     expect(calendar.exists()).toBe(true);
-    // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
   });
 
   it('Calendar components state default', () => {
@@ -86,7 +85,6 @@ describe('Calendar minDayAwayCheckout Test', () => {
 
     const minDayAwayCheckOut = instance.minDayAwayCheckOut('2019-06-24');
     expect(minDayAwayCheckOut).toBe(false);
-    // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
   });
   it('New date does not meet minDayAwayCheckOut for 3 min nights ', () => {
     const calendar = shallow(<Calendar listing={listing} />);
@@ -123,9 +121,8 @@ describe('Calendar minDayAwayCheckIn Test', () => {
 
     const instance = calendar.instance();
 
-    const minDayAwayCheckOut = instance.minDayAwayCheckIn('2019-06-22');
-    expect(minDayAwayCheckOut).toBe(false);
-    // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
+    const minDayAwayCheckIn = instance.minDayAwayCheckIn('2019-06-22');
+    expect(minDayAwayCheckIn).toBe(false);
   });
   it('New date does not meet minDayAwayCheckIn for 3 min nights ', () => {
     const calendar = shallow(<Calendar listing={listing} />);
@@ -133,7 +130,7 @@ describe('Calendar minDayAwayCheckIn Test', () => {
 
     const instance = calendar.instance();
 
-    const minDayAwayCheckOut = instance.minDayAwayCheckIn('2019-06-20');
-    expect(minDayAwayCheckOut).toBe(true);
+    const minDayAwayCheckIn = instance.minDayAwayCheckIn('2019-06-20');
+    expect(minDayAwayCheckIn).toBe(true);
   });
 });

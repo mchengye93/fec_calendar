@@ -6,7 +6,7 @@ import Calendar from '../../client/src/components/Calendar.jsx';
 
 
 describe('Calendar', () => {
-  const listingArr = [{
+  const listing = {
     listingId: 0,
     bookings:
      ['2019-06-15',
@@ -21,16 +21,15 @@ describe('Calendar', () => {
        '2019-08-10'],
     minNights: 1,
     maxNights: 36,
-  }];
+  };
   it('Calendar components should be defined', () => {
-    const calendar = shallow(<Calendar listing={listingArr} />);
+    const calendar = shallow(<Calendar listing={listing} />);
 
     expect(calendar.exists()).toBe(true);
-    // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
   });
 
   it('Calendar components state default', () => {
-    const calendar = shallow(<Calendar listing={listingArr} />);
+    const calendar = shallow(<Calendar listing={listing} />);
     const { clicked } = calendar.state();
     const { checkIn } = calendar.state();
     const { checkOut } = calendar.state();
@@ -86,7 +85,6 @@ describe('Calendar minDayAwayCheckout Test', () => {
 
     const minDayAwayCheckOut = instance.minDayAwayCheckOut('2019-06-24');
     expect(minDayAwayCheckOut).toBe(false);
-    // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
   });
   it('New date does not meet minDayAwayCheckOut for 3 min nights ', () => {
     const calendar = shallow(<Calendar listing={listing} />);
@@ -123,9 +121,8 @@ describe('Calendar minDayAwayCheckIn Test', () => {
 
     const instance = calendar.instance();
 
-    const minDayAwayCheckOut = instance.minDayAwayCheckIn('2019-06-22');
-    expect(minDayAwayCheckOut).toBe(false);
-    // expect(wrapper.find(Calendar)).to.have.lengthOf(1);
+    const minDayAwayCheckIn = instance.minDayAwayCheckIn('2019-06-22');
+    expect(minDayAwayCheckIn).toBe(false);
   });
   it('New date does not meet minDayAwayCheckIn for 3 min nights ', () => {
     const calendar = shallow(<Calendar listing={listing} />);
@@ -133,7 +130,7 @@ describe('Calendar minDayAwayCheckIn Test', () => {
 
     const instance = calendar.instance();
 
-    const minDayAwayCheckOut = instance.minDayAwayCheckIn('2019-06-20');
-    expect(minDayAwayCheckOut).toBe(true);
+    const minDayAwayCheckIn = instance.minDayAwayCheckIn('2019-06-20');
+    expect(minDayAwayCheckIn).toBe(true);
   });
 });

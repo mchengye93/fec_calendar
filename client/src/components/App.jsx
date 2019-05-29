@@ -22,7 +22,7 @@ class App extends React.Component {
 
   getBookings(listingId) {
     // console.log(this.state);
-    axios.get('/bookings', {
+    axios.get('http://localhost:3003/bookings', {
       params: {
         listingId,
       },
@@ -79,11 +79,12 @@ class App extends React.Component {
       width: '648px',
     };
 
+    const { listing } = this.state;
     return (
 
 
       <div style={calendarDiv}>
-        <Calendar listing={this.state.listing} />
+        <Calendar listing={listing} />
       </div>
 
     );

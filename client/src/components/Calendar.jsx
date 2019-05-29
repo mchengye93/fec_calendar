@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/sort-comp */
 import React from 'react';
 import moment from 'moment';

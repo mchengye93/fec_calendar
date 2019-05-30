@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 
 app.get('/bookings', (req, res) => {
   const listingIdObj = req.query;
+  console.log(listingIdObj);
   db.getBookings(listingIdObj, res);
 });
 

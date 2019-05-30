@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import CalendarApp from './components/CalendarApp.jsx';
 
-ReactDOM.render(<App />, document.getElementById('calendar'));
+ReactDOM.render(<CalendarApp />, document.getElementById('calendar'));

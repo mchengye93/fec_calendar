@@ -5,13 +5,13 @@ const db = require('../database/index.js');
 
 const listingGenerator = () => {
   const listings = [];
-  for (let x = 0; x < 10; x += 1) {
+  for (let x = 0; x < 100; x += 1) {
     const listing = { };
 
     listing.listingId = x;
 
     const randomDateArr = [];
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 50; i += 1) {
       const now = new Date();
 
       const aYearFromNow = new Date();

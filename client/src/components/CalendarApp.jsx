@@ -5,7 +5,7 @@ import moment from 'moment';
 import Calendar from './Calendar.jsx';
 
 
-class App extends React.Component {
+class CalendarApp extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getBookings(0);
+    this.getBookings(Math.floor(Math.random() * 100));
   }
 
   getBookings(listingId) {
@@ -29,6 +29,7 @@ class App extends React.Component {
     })
       .then((results) => {
         // take results and add blackout dates according to minimum stay
+        console.log(results.data[0]);
         this.blackOutDates(results.data[0]);
       })
       .catch((error) => {
@@ -91,4 +92,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default CalendarApp;

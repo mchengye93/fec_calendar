@@ -4,7 +4,8 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import styled from 'styled-components';
+
+const { styled } = window;
 
 const Div = styled.div`
 font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif';

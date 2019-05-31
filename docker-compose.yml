@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  calendarserver:
+    build: .
+    depends_on:
+      - 'database'
+    ports: 
+      - '80:3006'
+
+  database:
+    image: mongo:latest
+
+  mongo-seed:
+      build: ./database
+      depends_on:
+        - 'database'

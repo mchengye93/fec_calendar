@@ -3,12 +3,13 @@
 import React from 'react';
 import moment from 'moment';
 
-import styled from 'styled-components';
+
 import WeekDays from './WeekDays.jsx';
 import DaysInMonth from './DaysInMonth.jsx';
 import Button from './Button.jsx';
 import Message from './Message.jsx';
 
+const { styled } = window;
 
 const Style1 = styled.div`
 width: '100%';

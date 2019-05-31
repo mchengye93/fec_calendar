@@ -25,3 +25,6 @@ build/
 dist/
 public/bundle.js
 
+#ignore package-lock
+package-lock.json
+

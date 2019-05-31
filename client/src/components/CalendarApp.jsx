@@ -18,11 +18,12 @@ class CalendarApp extends React.Component {
 
   componentDidMount() {
     this.getBookings(Math.floor(Math.random() * 100));
+    console.log('components did mount');
   }
 
   getBookings(listingId) {
     // console.log(this.state);
-    axios.get('http://localhost:3003/bookings', {
+    axios.get('http://ec2-18-219-161-100.us-east-2.compute.amazonaws.com/bookings', {
       params: {
         listingId,
       },

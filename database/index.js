@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/airbnb-calendar', { useNewUrlParser: true });
-
+// mongoose.connect('mongodb://localhost/airbnb-calendar', { useNewUrlParser: true });
+mongoose.connect('mongodb://database/airbnb-calendar', { useNewUrlParser: true });
 
 const { Schema } = mongoose;
 
